@@ -1,13 +1,13 @@
-alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
+if [ -f $HOME/.config/aliases ]; then
+	source $HOME/.config/aliases >&2
+fi
 
 autoload -Uz compinit && compinit
 
 alias vim=/usr/bin/vi
 alias vi=nvim
-alias docker=podman
 
 export PATH="$HOME/.local/bin:$PATH"
-
 export XDG_CONFIG_HOME="$HOME/.config"
 
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_frappe.omp.json)"
@@ -23,7 +23,7 @@ host=$(hostname)
 
 autoload colors; colors
 
-if [ $host = "Lagertha.local" ]; then
+if [ $host = "Lagertha" ]; then
 	if [ $emulator = "JetBrains-JediTerm" ]; then
 		echo " $fg[white]Start podman: $fg[green]podman machine $fg[magenta]start$reset_color"
 		echo "  $fg[white]Stop podman: $fg[green]podman machine $fg[magenta]stop$reset_color"

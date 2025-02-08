@@ -1,0 +1,26 @@
+alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
+alias flush-dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
+alias docker=podman
+alias setup-gitea="cp -R ~/.local/share/development/.gitea ."
+alias setup-laravel="rsync -av --exclude='README.md' --exclude='.gitignore' --exclude='.git/' --exclude='.idea/' ~/Repository/codequality-laravel/ ."
+alias setup-web="cp ~/Repository/codequality-laravel/.editorconfig ."
+
+dev() {
+	cd ~/Repository/$1
+}
+
+gac() {
+	git add .
+	if [ -n $1 ]
+	then
+		if [ $1 == "--amend" ]
+		then
+			git commit --amend
+		else
+			git commit -m "$@"
+		fi
+	else
+		git commit
+	fi
+}
