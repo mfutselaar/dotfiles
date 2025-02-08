@@ -12,10 +12,8 @@ dev() {
 
 gac() {
 	git add .
-	if [ -n $1 ]
-	then
-		if [ $1 == "--amend" ]
-		then
+	if [ -n "$1" ]; then
+		if [[ "$1" == "--amend" ]]; then
 			git commit --amend
 		else
 			git commit -m "$@"
