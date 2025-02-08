@@ -6,10 +6,6 @@ alias setup-gitea="cp -R ~/.local/share/development/.gitea ."
 alias setup-laravel="rsync -av --exclude='README.md' --exclude='.gitignore' --exclude='.git/' --exclude='.idea/' ~/Repository/codequality-laravel/ ."
 alias setup-web="cp ~/Repository/codequality-laravel/.editorconfig ."
 
-dev() {
-	cd ~/Repository/$1
-}
-
 gac() {
 	git add .
 	if [ -n "$1" ]; then
@@ -22,3 +18,27 @@ gac() {
 		git commit
 	fi
 }
+
+dev() {
+    cd ~/Repository/$1
+
+    if [ -n "$2" ]; then
+	if [ -n "$2" ]; then
+		case "$2" in
+		        p) phpstorm . ;;
+		        r) rider . ;;
+		        j) idea . ;;
+		        *) nvim . ;;
+		    esac
+	fi
+   fi
+}
+
+_dev_autocomplete() {
+    local -a reply
+    reply=( $(find ~/Repository/ -type d -print | sed 's|^'$HOME'/Repository/||; s|^/||') ) 
+    _describe 'subdirectories' reply
+}
+
+compdef _dev_autocomplete dev
+
