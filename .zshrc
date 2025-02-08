@@ -1,8 +1,8 @@
+autoload -Uz compinit && compinit
+
 if [ -f $HOME/.config/aliases ]; then
 	source $HOME/.config/aliases >&2
 fi
-
-autoload -Uz compinit && compinit
 
 alias vim=/usr/bin/vi
 alias vi=nvim
