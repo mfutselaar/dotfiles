@@ -61,10 +61,12 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-
-
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
+
+vim.cmd [[
+  autocmd BufRead,BufNewFile ~/.config/aliases set filetype=zsh
+]]
 
 -- vim: ts=2 sts=2 sw=2 et

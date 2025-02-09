@@ -42,3 +42,13 @@ _dev_autocomplete() {
 
 compdef _dev_autocomplete dev
 
+artisan() {
+	php artisan $@
+}
+
+_artisan_autocomplete() {
+    local commands=($(php artisan list --raw | awk '{print $1}'))
+    compadd -- "${commands[@]}"
+}
+
+compdef _artisan_autocomplete artisan
