@@ -6,14 +6,12 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    local width = 40
-
     require('nvim-tree').setup {
       sort = {
         sorter = 'case_sensitive',
       },
       view = {
-        width = width,
+        width = 40,
       },
       renderer = {
         group_empty = true,
@@ -29,7 +27,7 @@ return {
         vim.cmd ':NvimTreeClose'
         require('barbar.api').set_offset(0)
       else
-        require('barbar.api').set_offset(width)
+        require('barbar.api').set_offset(31)
 
         if cwd then
           vim.cmd ':NvimTreeOpen %:h'

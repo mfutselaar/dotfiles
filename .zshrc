@@ -9,6 +9,7 @@ alias vi=nvim
 
 export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR=nvim
 
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_frappe.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"

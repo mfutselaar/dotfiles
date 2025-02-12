@@ -53,3 +53,8 @@ vim.keymap.set('n', '<leader>tk', '<cmd>Telescope keymaps<CR>', { silent = true 
 vim.keymap.set('n', '<leader>td', '<Cmd>Telescope diagnostic<CR>', { silent = true })
 vim.keymap.set('n', '<leader>t', '<Cmd>Telescope<CR>', { silent = true })
 vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm<CR>', { silent = true })
+
+vim.keymap.set('n', '<Tab>', '>>', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Tab>', '<<', { noremap = true, silent = true })
+vim.keymap.set('v', '<Tab>', '>gv', { noremap = true, silent = true })
+vim.keymap.set('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
