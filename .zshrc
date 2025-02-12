@@ -5,7 +5,7 @@ if [ -f $HOME/.config/aliases ]; then
 fi
 
 alias vim=/usr/bin/vi
-alias vi=nvim
+alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
 
 export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"

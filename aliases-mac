@@ -1,4 +1,4 @@
-alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
+alias vi=nvim
 alias flush-dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
 alias docker=podman

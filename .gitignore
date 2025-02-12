@@ -6,3 +6,11 @@ jgit/
 joplin-desktop/
 mc/
 aliases
+aliases-linux
+cni/
+go/
+htop/
+nvim.old/
+rclone/
+setup-aliases.sh
+tmux/plugins/
