@@ -7,14 +7,14 @@
         {
           "background": "#18354c",
           "foreground": "#ffc107",
-          "template": " {{.Icon}} ",
+          "template": " {{.Icon}}",
           "type": "os"
         },
         {
           "background": "#18354c",
           "foreground": "#ffc107",
           "style": "powerline",
-          "template": " {{ .UserName }}@{{ .HostName }}{{ if .SSHSession }} {{ end }} ",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
           "type": "session"
         },
         {
