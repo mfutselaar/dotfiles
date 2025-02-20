@@ -1,3 +1,5 @@
+alias tmu="tmux a || tmux new"
+alias aseprite="~/.local/share/aseprite/aseprite"
 alias phpunit="vendor/bin/phpunit"
 alias pint="vendor/bin/pint --dirty"
 alias vi=nvim
