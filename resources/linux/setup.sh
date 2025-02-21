@@ -88,9 +88,9 @@ php_installer() {
         echo "Installing Ondřej PHP PPA for $DISTRO..."
         if [ "$DISTRO" = "Debian" ]; then
             sudo apt-get install -y software-properties-common
-            sudo add-apt-repository "$REPO_URL"
+            sudo add-apt-repository -f "$REPO_URL"
         else
-            sudo add-apt-repository ppa:ondrej/php
+            sudo add-apt-repository -f ppa:ondrej/php
        fi
 
        sudo apt update
