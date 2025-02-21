@@ -45,9 +45,13 @@ check_system_type() {
 
 # Function to ask for Linux system type
 ask_linux_type() {
-    echo "Please enter the type of your Linux system:"
-    echo "1. Desktop"
-    echo "2. Server"
+    echo "####################################################################################"
+    echo "##"
+    echo "## Please enter the type of your Linux system:"
+    echo "##   1. Desktop"
+    echo "##   2. Server"
+    echo "##"
+    echo "####################################################################################"
 
     read -p "Enter the number corresponding to your choice: " choice
 
