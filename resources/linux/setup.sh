@@ -57,7 +57,7 @@ docker_installer() {
 podman_installer() {
     if ask_yes_no "Do you want to proceed installing podman?" "yes"; then
        sudo apt install -y podman
-       pip3 install podman-compose
+       pipx install podman-compose
     fi
 }
 
