@@ -5,9 +5,6 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-=======
-cat ../generic/ssh/config >> ~/.ssh/config
-
 # Tap the homebrew/cask-fonts repository for fonts
 brew tap homebrew/cask-fonts
 
