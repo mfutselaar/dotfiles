@@ -64,15 +64,14 @@ docker_installer() {
 dotnet_installer() {
     if ask_yes_no "Do you want to proceed installing .NET Core 8.0 and 9.0?" "yes"; then
         sudo apt update -y
-        sudo apt install -y apt-transport-https ca-certificates curl
-        curl -s https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-$(lsb_release -sc)-prod $(lsb_release -sc) main" > /etc/apt/sources.list.d/dotnet.list'
-        sudo apt update
+        sudo apt install -y apt-transport-https ca-certificates curl libc6 libgcc-s1 libgssapi-krb5-2 libicu72 liblttng-ust1 libssl3 libstdc++6 libunwind8 zlib1g
 
         if $is_server_setup; then
-           sudo apt install -y dotnet-runtime-8.0 dotnet-runtime-9.0 
+            curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 8.0
+            curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 9.0
         else
-            sudo apt install -y dotnet-sdk-8.0 dotnet-sdk-9.0
+            curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --version 8.0
+            curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --version 9.0
         fi
     fi
 }
