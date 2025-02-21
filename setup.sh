@@ -56,3 +56,8 @@ ask_linux_type() {
 
 # Start the script
 check_system_type
+
+git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+~/.local/share/tmux/plugins/tpm/bin/install_plugins
+
+git remote add upstream git@github.com:mfutselaar/dotfiles.git

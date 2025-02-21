@@ -5,13 +5,14 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-rm ~/.config/quotes.txt
-cp ./quotes.txt ~/.config
+
+cat ../generic/ssh/config >> ~/.ssh/config
 
 # Tap the homebrew/cask-fonts repository for fonts
 brew tap homebrew/cask-fonts
 
 # Install the packages using Homebrew
+brew install htop
 brew install tmux
 brew install neovim
 brew install ghostty
