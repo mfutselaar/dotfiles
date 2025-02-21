@@ -15,6 +15,8 @@ ln -s ~/.config/resources/.gitconfig ~/.gitconfig
 cat ~/.config/resources/generic/ssh/authorized_keys >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
+git submodule update --init
+
 # Function to check the system type
 check_system_type() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
