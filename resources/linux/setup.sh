@@ -102,12 +102,13 @@ nerdfont_installer() {
         mkdir -p ~/.local/share/fonts
         unzip ~/JetBrainsMono.zip -d ~/.local/share/fonts
         rm ~/JetBrainsMono.zip
+        sudo apt install -y fontconfig
         fc-cache -fv
     fi
 }
 
 sudo apt update -y
-sudo apt install -y git zsh snapd mc curl htop
+sudo apt install -y git zsh snapd mc curl htop python3
 sudo snap install tmux --classic
 
 mkdir -p ~/.local/bin
