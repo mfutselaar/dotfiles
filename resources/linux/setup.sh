@@ -150,7 +150,7 @@ nerdfont_installer() {
 
 k8s_installer() {
     if ask_yes_no "Do you want to proceed installing k8s?" "no";  then
-        sudo ./k8s.sh
+        sudo ./resources/linux/k8s.sh
         sudo kubeadm init
         mkdir -p ~/.kube
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
