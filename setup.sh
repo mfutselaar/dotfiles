@@ -23,6 +23,8 @@ chmod 600 ~/.ssh/authorized_keys
 
 git submodule update --init
 
+git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+
 # Function to check the system type
 check_system_type() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -64,8 +66,5 @@ ask_linux_type() {
 
 # Start the script
 check_system_type
-
-git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
-~/.local/share/tmux/plugins/tpm/bin/install_plugins
 
 git remote add upstream git@github.com:mfutselaar/dotfiles.git
