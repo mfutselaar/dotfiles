@@ -61,6 +61,22 @@ docker_installer() {
     fi
 }
 
+dotnet_installer() {
+    if ask_yes_no "Do you want to proceed installing .NET Core 8.0 and 9.0?" "yes"; then
+        sudo apt get -y update
+        sudo apt get -y install apt-transport-https ca-certificates curl
+        curl -s https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-$(lsb_release -sc)-prod $(lsb_release -sc) main" > /etc/apt/sources.list.d/dotnet.list'
+        sudo apt update
+
+        if $is_server_setup; then
+           sudo apt get -y install dotnet-runtime-8.0 dotnet-runtime-9.0 
+        else
+            sudo apt get -y install dotnet-sdk-8.0 dotnet-sdk-9.0
+        fi
+    fi
+}
+
 podman_installer() {
     if ask_yes_no "Do you want to proceed installing podman?" "yes"; then
        sudo apt install -y podman
