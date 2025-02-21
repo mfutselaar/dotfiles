@@ -72,26 +72,23 @@ node_installer() {
 php_installer() {
     if ask_yes_no "Do you want to proceed installing PHP?" "yes"; then
        sudo apt install -y software-properties-common gnupg2  apt-transport-https lsb-release ca-certificates
-    
-       if [ -f /etc/debian_version ]; then
-            DISTRO="Debian"
-            REPO_URL="deb http://ppa.launchpad.net/ondrej/php/ubuntu $(lsb_release -sc) main"
-        elif [ -f /etc/lsb-release ]; then
-            DISTRO="Ubuntu"
-            REPO_URL="ppa:ondrej/php"
+
+        if command -v lsb_release > /dev/null; then
+            DISTRO=$(lsb_release -si)
         else
-            echo "Unsupported distribution, you need to install PHP by hand."
-            return 0
+            echo "#####################################"
+            echo "##       Install PHP manually      ##"
+            echo "#####################################"
+            return 1
         fi
         
         # Install the PPA
-        echo "Installing Ondřej PHP PPA for $DISTRO..."
         if [ "$DISTRO" = "Debian" ]; then
-            sudo apt-get install -y software-properties-common
-            sudo add-apt-repository -f "$REPO_URL"
+            echo "deb http://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+            wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
         else
-            sudo add-apt-repository -f ppa:ondrej/php
-       fi
+            sudo apt-add-repository -y ppa:ondrej/php
+        fi
 
        sudo apt update
 
@@ -101,7 +98,7 @@ php_installer() {
         sudo apt install -y php8.4-cli php8-xdebug
        fi
 
-       sudo apt install -y php8.4-common php8.4-mysql php8.4-xml php8.4-gd php8.4-mbstring php8.4-zip php8.4-bcmath php8.4-curl
+       sudo apt install -y php8.4-common php8.4-{mysql,xml,gd,mbstring,zip,bcmath,curl,bz2,intl}
     fi
 }
 
