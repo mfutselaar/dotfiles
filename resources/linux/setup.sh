@@ -154,6 +154,7 @@ else
     podman_installer
 fi
 
+dotnet_installer
 node_installer
 neovim_installer
 php_installer
