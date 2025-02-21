@@ -21,3 +21,5 @@ brew install xdebug
 brew install mc
 brew install --cask font-jetbrains-mono-nerd-font
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
+
+~/.local/share/tmux/plugins/tpm/bin/install_plugins
