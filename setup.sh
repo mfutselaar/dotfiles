@@ -12,6 +12,12 @@ rm .zshrc aliases quotes.txt
 ln -s ~/.config/resources/.zshrc ~/.zshrc
 ln -s ~/.config/resources/.gitconfig ~/.gitconfig
 
+if [ ! -d ~/.ssh ]; then
+	mkdir ~/.ssh
+	chmod 0700 ~/.ssh
+fi
+
+cat ~/.config/resources/generic/ssh/config >> ~/.ssh/config
 cat ~/.config/resources/generic/ssh/authorized_keys >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
