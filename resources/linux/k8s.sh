@@ -33,10 +33,12 @@ containerd config default | tee /etc/containerd/config.toml
 systemctl restart containerd
 systemctl enable containerd
 
-# Add Kubernetes repository
+# Add Kubernetes repository and GPG key
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | tee /etc/apt/keyrings/kubernetes-archive-keyring.gpg > /dev/null
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-deb https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
+deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
 EOF
 
 # Update package lists and forcefully install Kubernetes components
