@@ -1,0 +1,13 @@
+if [[ "$(hostname)" == "ragnar" ]]; then
+    alias nginx-config="cd /home/mathijs/docker/development/data/nginx/config/conf.d"
+    alias upcon=/home/mathijs/update-container.sh
+
+    nginx-restart() {
+        cd /home/mathijs/docker/development
+        docker compose down nginx
+        docker compose up nginx $@
+        cd -
+    }
+fi
+
+

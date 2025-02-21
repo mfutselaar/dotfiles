@@ -2,7 +2,6 @@ alias tmu="tmux a || tmux new"
 alias aseprite="~/.local/share/aseprite/aseprite"
 alias phpunit="vendor/bin/phpunit"
 alias pint="vendor/bin/pint --dirty"
-alias vi=nvim
 alias flush-dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
 alias docker=podman
@@ -11,49 +10,49 @@ alias setup-laravel="rsync -av --exclude='README.md' --exclude='.gitignore' --ex
 alias setup-web="cp ~/Repository/codequality-laravel/.editorconfig ."
 
 gac() {
-	git add .
-	if [ -n "$1" ]; then
-		if [[ "$1" == "--amend" ]]; then
-			git commit --amend
-		else
-			git commit -m "$@"
-		fi
-	else
-		git commit
-	fi
+        git add .
+        if [ -n "$1" ]; then
+                if [[ "$1" == "--amend" ]]; then
+                        git commit --amend
+                else
+                        git commit -m "$@"
+                fi
+        else
+                git commit
+        fi
 }
 
 gacp() {
-	gac $@
-	git push
+        gac $@
+        git push
 }
 
 dev() {
     cd ~/Repository/$1
 
     if [ -n "$2" ]; then
-	if [ -n "$2" ]; then
-		case "$2" in
-		        p) phpstorm . ;;
-		        r) rider . ;;
-			a) studio . ;;
-		        j) idea . ;;
-		        *) nvim . ;;
-		    esac
-	fi
+        if [ -n "$2" ]; then
+                case "$2" in
+                        p) phpstorm . ;;
+                        r) rider . ;;
+                        a) studio . ;;
+                        j) idea . ;;
+                        *) nvim . ;;
+                    esac
+        fi
    fi
 }
 
 _dev_autocomplete() {
     local -a reply
-    reply=( $(find ~/Repository/ -type d -print | sed 's|^'$HOME'/Repository/||; s|^/||') ) 
+    reply=( $(find ~/Repository/ -type d -print | sed 's|^'$HOME'/Repository/||; s|^/||') )
     _describe 'subdirectories' reply
 }
 
 compdef _dev_autocomplete dev
 
 artisan() {
-	php artisan $@
+        php artisan $@
 }
 
 _artisan_autocomplete() {
