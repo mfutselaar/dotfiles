@@ -72,7 +72,27 @@ node_installer() {
 php_installer() {
     if ask_yes_no "Do you want to proceed installing PHP?" "yes"; then
        sudo apt install -y software-properties-common gnupg2  apt-transport-https lsb-release ca-certificates
-       sudo add-apt-repository -y ppa:ondrej/php
+    
+       if [ -f /etc/debian_version ]; then
+            DISTRO="Debian"
+            REPO_URL="deb http://ppa.launchpad.net/ondrej/php/ubuntu $(lsb_release -sc) main"
+        elif [ -f /etc/lsb-release ]; then
+            DISTRO="Ubuntu"
+            REPO_URL="ppa:ondrej/php"
+        else
+            echo "Unsupported distribution, you need to install PHP by hand."
+            return 0
+        fi
+        
+        # Install the PPA
+        echo "Installing Ondřej PHP PPA for $DISTRO..."
+        if [ "$DISTRO" = "Debian" ]; then
+            sudo apt-get install -y software-properties-common
+            sudo add-apt-repository "$REPO_URL"
+        else
+            sudo add-apt-repository ppa:ondrej/php
+       fi
+
        sudo apt update
 
        if $is_server_setup; then
