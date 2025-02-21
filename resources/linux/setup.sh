@@ -89,6 +89,7 @@ podman_installer() {
     if ask_yes_no "Do you want to proceed installing podman?" "yes"; then
        sudo apt install -y podman
        pipx install podman-compose
+       pipx ensurepath
        podman machine init
     fi
 }
@@ -150,17 +151,15 @@ nerdfont_installer() {
 
 k8s_installer() {
     if ask_yes_no "Do you want to proceed installing k8s using kind?" "no";  then
-        apt-get install -y curl apt-transport-https ca-certificates
+        sudo apt-get install -y curl apt-transport-https ca-certificates
 
-        apt-get install -y curl apt-transport-https ca-certificates
+        sudo apt-get install -y curl apt-transport-https ca-certificates
 
         # Install Go 1.24
         curl -LO https://golang.org/dl/go1.24.linux-amd64.tar.gz
-        tar -C /usr/local -xzf go1.24.linux-amd64.tar.gz
-        echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile
-        source ~/.profile
+        sudo tar -C /usr/local -xzf go1.24.linux-amd64.tar.gz
 
-        go install sigs.k8s.io/kind@v0.27.0
+        /usr/local/go/bin/go install sigs.k8s.io/kind@v0.27.0
         kind create cluster
     fi
 }
