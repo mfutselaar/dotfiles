@@ -6,6 +6,8 @@ if [[ $path != */.config ]]; then
 	exit
 fi
 
+clear
+
 rm $HOME/.zshrc $HOME/.gitconfig
 rm .zshrc aliases quotes.txt
 
