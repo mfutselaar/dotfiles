@@ -67,13 +67,15 @@ dotnet_installer() {
         sudo apt install -y apt-transport-https ca-certificates curl libc6 libgcc-s1 libgssapi-krb5-2 libicu72 liblttng-ust1 libssl3 libstdc++6 libunwind8 zlib1g
 
         echo "Downloading and executing dotnet-install.sh scripts, this could take a while..."
-        
+        wget https://dot.net/v1/dotnet-install.sh -O ~/.local/bin/dotnet-install.sh
+
+
         if $is_server_setup; then
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --channel 8.0
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --channel 9.0
+            sh MyGame/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 8.0
+            sh MyGame/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 9.0
         else
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0
+            sh MyGame/.local/bin/dotnet-install.sh --channel 8.0
+            sh MyGame/.local/bin/dotnet-install.sh --channel 9.0
         fi
     fi
 }
