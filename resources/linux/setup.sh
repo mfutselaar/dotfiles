@@ -73,6 +73,7 @@ php_installer() {
     if ask_yes_no "Do you want to proceed installing PHP?" "yes"; then
        sudo apt install -y software-properties-common gnupg2  apt-transport-https lsb-release ca-certificates
        sudo add-apt-repository -y ppa:ondrej/php
+       sudo apt update
 
        if $is_server_setup; then
         sudo apt install -y php8.4-fpm php8.4-cli nginx
