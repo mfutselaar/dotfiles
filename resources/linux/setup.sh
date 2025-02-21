@@ -10,6 +10,13 @@ if [ ! -d "~/.sources" ]; then
     mkdir ~/.sources
 fi
 
+if command -v lsb_release > /dev/null; then
+    DISTRO=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
+else
+    echo "lsb_release command not found, unable to determine distribution."
+    exit 1
+fi
+
 # Function for yes/no prompt
 ask_yes_no() {
     local prompt_message=$1
@@ -39,13 +46,13 @@ docker_installer() {
     if ask_yes_no "Do you want to proceed installing Docker?" "yes"; then        
         sudo apt-get -y install ca-certificates curl
         sudo install -m 0755 -d /etc/apt/keyrings
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo curl -fsSL https://download.docker.com/linux/$DISTRO/gpg -o /etc/apt/keyrings/docker.asc
         sudo chmod a+r /etc/apt/keyrings/docker.asc
         sudo groupadd docker
         sudo usermod -aG docker $USER
 
         echo \
-          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$DISTRO \
           $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
           sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         sudo apt-get -y update
@@ -73,17 +80,8 @@ php_installer() {
     if ask_yes_no "Do you want to proceed installing PHP?" "yes"; then
        sudo apt install -y software-properties-common gnupg2  apt-transport-https lsb-release ca-certificates
 
-        if command -v lsb_release > /dev/null; then
-            DISTRO=$(lsb_release -si)
-        else
-            echo "#####################################"
-            echo "##       Install PHP manually      ##"
-            echo "#####################################"
-            return 1
-        fi
-        
         # Install the PPA
-        if [ "$DISTRO" = "Debian" ]; then
+        if [ "$DISTRO" = "debian" ]; then
             echo "deb http://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
             wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
         else
