@@ -67,11 +67,11 @@ dotnet_installer() {
         sudo apt install -y apt-transport-https ca-certificates curl libc6 libgcc-s1 libgssapi-krb5-2 libicu72 liblttng-ust1 libssl3 libstdc++6 libunwind8 zlib1g
 
         if $is_server_setup; then
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --version 8.0
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --version 9.0
+            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --channel 8.0
+            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime aspnetcore --channel 9.0
         else
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0
-            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 9.0
+            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
+            curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0
         fi
     fi
 }
