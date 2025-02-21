@@ -108,7 +108,7 @@ nerdfont_installer() {
 }
 
 sudo apt update -y
-sudo apt install -y git zsh snapd mc curl htop python3 python3-pip
+sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx
 sudo snap install tmux --classic
 
 mkdir -p ~/.local/bin
@@ -117,7 +117,6 @@ curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 if $is_server_setup; then
     docker_installer
 else
-    cat ../generic/ssh/config >> ~/.ssh/config
     nerdfont_installer
     podman_installer
     sudo snap install ghostty --classic
