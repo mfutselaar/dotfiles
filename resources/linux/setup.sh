@@ -42,6 +42,8 @@ ask_yes_no() {
     fi
 }
 
+has_docker=false
+
 docker_installer() {
     if ask_yes_no "Do you want to proceed installing Docker?" "yes"; then        
         sudo apt-get -y install ca-certificates curl
@@ -58,6 +60,8 @@ docker_installer() {
         sudo apt-get -y update
 
         sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+        has_docker=true
     fi
 }
 
@@ -85,6 +89,7 @@ podman_installer() {
     if ask_yes_no "Do you want to proceed installing podman?" "yes"; then
        sudo apt install -y podman
        pipx install podman-compose
+       podman machine init
     fi
 }
 
@@ -143,6 +148,26 @@ nerdfont_installer() {
     fi
 }
 
+k8s_installer() {
+    if ask_yes_no "Do you want to proceed installing k8s?" "no";  then
+        sudo ./k8s.sh
+        sudo kubeadm init
+        mkdir -p ~/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+        kubectl get pod -A
+        kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+        kubectl get pods -A
+        kubeadm token create — print-join-command > ~/KUBEADM_TOKEN.txt
+
+        echo "#########################################################"
+        echo "##"
+        echo "## kube create output stored in ~/KUBEADM_TOKEN.txt"
+        echo "##"
+        echo "#########################################################"
+    fi
+}
+
 sudo apt update -y
 sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx python3-launchpadlib tmux
 
@@ -153,11 +178,14 @@ curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 
 if $is_server_setup; then
     docker_installer
-else
-    nerdfont_installer
+fi
+
+if [ ! $has_docker ]; then
+    k8s_installer
     podman_installer
 fi
 
+nerdfont_installer
 dotnet_installer
 node_installer
 neovim_installer
