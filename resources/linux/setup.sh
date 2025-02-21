@@ -116,6 +116,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 if $is_server_setup; then
     docker_installer
 else
+    cat ../generic/ssh/config >> ~/.ssh/config
     nerdfont_installer
     podman_installer
     sudo snap install ghostty --classic

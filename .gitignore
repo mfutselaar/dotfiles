@@ -4,7 +4,7 @@ containers/
 iterm2/
 jgit/
 joplin-desktop/
-aliases
+./aliases
 cni/
 go/
 htop/
