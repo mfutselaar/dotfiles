@@ -68,14 +68,15 @@ dotnet_installer() {
 
         echo "Downloading and executing dotnet-install.sh scripts, this could take a while..."
         wget https://dot.net/v1/dotnet-install.sh -O ~/.local/bin/dotnet-install.sh
+        chmod +x ~/.local/bin/dotnet-install.sh
 
 
         if $is_server_setup; then
-            sh ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 8.0
-            sh ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 9.0
+            ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 8.0
+            ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 9.0
         else
-            sh ~/.local/bin/dotnet-install.sh --channel 8.0
-            sh ~/.local/bin/dotnet-install.sh --channel 9.0
+            ~/.local/bin/dotnet-install.sh --channel 8.0
+            ~/.local/bin/dotnet-install.sh --channel 9.0
         fi
     fi
 }
