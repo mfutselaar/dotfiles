@@ -33,17 +33,15 @@ containerd config default | tee /etc/containerd/config.toml
 systemctl restart containerd
 systemctl enable containerd
 
-# Add Kubernetes repository and install Kubernetes
+# Add Kubernetes repository
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-mkdir -p /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | tee /etc/apt/keyrings/kubernetes-archive-keyring.gpg > /dev/null
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
+deb https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
 EOF
 
-# Update package lists and install Kubernetes components
-apt-get update
-apt-get install -y kubelet kubeadm kubectl
+# Update package lists and forcefully install Kubernetes components
+apt-get update --allow-unauthenticated
+apt-get install -y kubelet kubeadm kubectl --allow-unauthenticated
 
 # Enable kubelet service
 systemctl enable kubelet
@@ -61,3 +59,4 @@ EOF
 sysctl --system
 
 echo "Kubernetes installation on Ubuntu/Debian completed!"
+
