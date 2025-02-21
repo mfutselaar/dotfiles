@@ -22,7 +22,8 @@ brew install mc
 brew install --cask font-jetbrains-mono-nerd-font
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
-curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --version 8.0
-curl -fsSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --version 9.0
+echo "Installing .NET, this could take a while..."
+curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
+curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0
 
 ~/.local/share/tmux/plugins/tpm/bin/install_plugins
