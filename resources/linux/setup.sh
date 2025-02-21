@@ -42,7 +42,7 @@ ask_yes_no() {
     fi
 }
 
-has_docker=false
+has_docker=0
 
 docker_installer() {
     if ask_yes_no "Do you want to proceed installing Docker?" "yes"; then        
@@ -61,7 +61,7 @@ docker_installer() {
 
         sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-        has_docker=true
+        has_docker=1
     fi
 }
 
@@ -180,7 +180,7 @@ if $is_server_setup; then
     docker_installer
 fi
 
-if [ ! $has_docker ]; then
+if [ $has_docker == 0 ]; then
     k8s_installer
     podman_installer
 fi
