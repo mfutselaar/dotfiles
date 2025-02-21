@@ -124,8 +124,7 @@ nerdfont_installer() {
 }
 
 sudo apt update -y
-sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx python3-launchpadlib
-sudo snap install tmux --classic
+sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx python3-launchpadlib tmux
 
 ~/.local/share/tmux/plugins/tpm/bin/install_plugins
 
