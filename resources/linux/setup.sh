@@ -1,5 +1,11 @@
 #!/bin/bash
 
+GO_VERSION=1.24.0
+
+export GOPATH=~/.local/share/go
+export PATH=$PATH:$GOPATH/bin
+export TERM=xterm-256color
+
 if [ "$1" == "true" ]; then
     is_server_setup=true
 else
@@ -89,8 +95,6 @@ podman_installer() {
     if ask_yes_no "Do you want to proceed installing podman?" "yes"; then
        sudo apt install -y podman
        pipx install podman-compose
-       pipx ensurepath
-       $(which podman) machine init
     fi
 }
 
@@ -166,12 +170,13 @@ sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx python3-
 mkdir -p ~/.local/bin
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 
-# Install Go 1.24
-mkdir -p ~/.local/share
-rm -rf /usr/local/go
-wget https://go.dev/dl/go1.24.0.linux-amd64.tar.gz /tmp/go.tar.gz
-sudo tar -zxvf /tmp/go.tar.gz /usr/local
-rm /tmp/go.tar.gz
+mkdir -p $GOPATH/{pkg,bin,src}
+export GOBIN=$GOPATH/bin
+
+sudo rm -rf /usr/local/go
+wget https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz
+sudo tar -C /usr/local -zxvf go$GO_VERSION.linux-amd64.tar.gz
+rm go$GO_VERSION.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
 if $is_server_setup; then

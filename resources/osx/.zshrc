@@ -1,5 +1,8 @@
 autoload -Uz compinit && compinit
 
+export GOPATH=~/.local/share/go
+export GOBIN=$GOPATH/bin
+
 emulator=${TERMINAL_EMULATOR:-default}
 host=$(hostname)
 
@@ -27,7 +30,7 @@ export PATH="$HOME/.rd/bin:$PATH"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH:$GOPATH/bin"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

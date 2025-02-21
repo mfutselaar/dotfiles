@@ -21,6 +21,7 @@ brew install xdebug
 brew install mc
 brew install --cask font-jetbrains-mono-nerd-font
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
+brew install kind
 
 echo "Installing .NET, this could take a while..."
 curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
