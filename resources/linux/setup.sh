@@ -121,12 +121,15 @@ if $is_server_setup; then
 else
     nerdfont_installer
     podman_installer
-    sudo snap install ghostty --classic
 fi
 
 node_installer
 neovim_installer
 php_installer
+
+if [ ! $is_server_setup ]; then
+    sudo snap install ghostty --classic
+fi
 
 sudo apt autoremove
 
