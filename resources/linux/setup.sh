@@ -71,11 +71,11 @@ dotnet_installer() {
 
 
         if $is_server_setup; then
-            sh MyGame/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 8.0
-            sh MyGame/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 9.0
+            sh ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 8.0
+            sh ~/.local/bin/dotnet-install.sh --runtime aspnetcore --channel 9.0
         else
-            sh MyGame/.local/bin/dotnet-install.sh --channel 8.0
-            sh MyGame/.local/bin/dotnet-install.sh --channel 9.0
+            sh ~/.local/bin/dotnet-install.sh --channel 8.0
+            sh ~/.local/bin/dotnet-install.sh --channel 9.0
         fi
     fi
 }
