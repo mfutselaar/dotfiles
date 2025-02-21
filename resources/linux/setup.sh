@@ -90,7 +90,7 @@ podman_installer() {
        sudo apt install -y podman
        pipx install podman-compose
        pipx ensurepath
-       podman machine init
+       $(which podman) machine init
     fi
 }
 
@@ -153,13 +153,7 @@ k8s_installer() {
     if ask_yes_no "Do you want to proceed installing k8s using kind?" "no";  then
         sudo apt-get install -y curl apt-transport-https ca-certificates
 
-        sudo apt-get install -y curl apt-transport-https ca-certificates
-
-        # Install Go 1.24
-        curl -LO https://golang.org/dl/go1.24.linux-amd64.tar.gz
-        sudo tar -C /usr/local -xzf go1.24.linux-amd64.tar.gz
-
-        /usr/local/go/bin/go install sigs.k8s.io/kind@v0.27.0
+        go install sigs.k8s.io/kind@v0.27.0
         kind create cluster
     fi
 }
@@ -171,6 +165,14 @@ sudo apt install -y git zsh snapd mc curl htop python3 python3-pip pipx python3-
 
 mkdir -p ~/.local/bin
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+
+# Install Go 1.24
+mkdir -p ~/.local/share
+rm -rf /usr/local/go
+wget https://go.dev/dl/go1.24.0.linux-amd64.tar.gz /tmp/go.tar.gz
+sudo tar -zxvf /tmp/go.tar.gz /usr/local
+rm /tmp/go.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
 if $is_server_setup; then
     docker_installer
