@@ -8,6 +8,12 @@ fi
 
 clear
 
+rm $HOME/.zshrc $HOME/.gitconfig
+rm .zshrc aliases quotes.txt
+
+ln -s ~/.config/resources/.zshrc ~/.zshrc
+ln -s ~/.config/resources/.gitconfig ~/.gitconfig
+
 if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
 	chmod 0700 ~/.ssh
@@ -21,16 +27,19 @@ git submodule update --init
 
 git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
 
-./minimal-setup.sh
-
 # Function to check the system type
 check_system_type() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo "This system is running Linux."
+        ln -s ~/.config/resources/linux/aliases aliases
+        ln -s ~/.config/resources/linux/.zshrc .zshrc-custom
         ask_linux_type
     elif [[ "$OSTYPE" == "darwin"* ]]; then
+        echo "This system is running macOS."
+        ln -s ~/.config/resources/osx/aliases aliases
+        ln -s ~/.config/resources/osx/.zshrc .zshrc-custom
     else
         echo "This script only supports Linux and macOS."
-        exit 1
     fi
 }
 
