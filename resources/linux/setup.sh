@@ -149,22 +149,19 @@ nerdfont_installer() {
 }
 
 k8s_installer() {
-    if ask_yes_no "Do you want to proceed installing k8s?" "no";  then
-        sudo ./resources/linux/k8s.sh
-        sudo kubeadm init
-        mkdir -p ~/.kube
-        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-        sudo chown $(id -u):$(id -g) $HOME/.kube/config
-        kubectl get pod -A
-        kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
-        kubectl get pods -A
-        kubeadm token create — print-join-command > ~/KUBEADM_TOKEN.txt
+    if ask_yes_no "Do you want to proceed installing k8s using kind?" "no";  then
+        apt-get install -y curl apt-transport-https ca-certificates
 
-        echo "#########################################################"
-        echo "##"
-        echo "## kube create output stored in ~/KUBEADM_TOKEN.txt"
-        echo "##"
-        echo "#########################################################"
+        apt-get install -y curl apt-transport-https ca-certificates
+
+        # Install Go 1.24
+        curl -LO https://golang.org/dl/go1.24.linux-amd64.tar.gz
+        tar -C /usr/local -xzf go1.24.linux-amd64.tar.gz
+        echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile
+        source ~/.profile
+
+        go install sigs.k8s.io/kind@v0.27.0
+        kind create cluster
     fi
 }
 
@@ -181,10 +178,10 @@ if $is_server_setup; then
 fi
 
 if [ $has_docker == 0 ]; then
-    k8s_installer
     podman_installer
 fi
 
+k8s_installer
 nerdfont_installer
 dotnet_installer
 node_installer

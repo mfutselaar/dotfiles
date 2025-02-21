@@ -12,7 +12,7 @@ alias vi=$(which nvim)
 alias vim=/usr/bin/vi
 alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH:/usr/local/go/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 
