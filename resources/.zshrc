@@ -11,6 +11,25 @@ fi
 alias vi=$(which nvim)
 alias vim=/usr/bin/vi
 alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
+alias tmu="tmux a || tmux new"
+
+gac() {
+        git add .
+        if [ -n "$1" ]; then
+                if [[ "$1" == "--amend" ]]; then
+                        git commit --amend
+                else
+                        git commit -m "$@"
+                fi
+        else
+                git commit
+        fi
+}
+
+gacp() {
+        gac $@
+        git push
+}
 
 export PATH="$HOME/.local/bin:$PATH:/usr/local/go/bin"
 export XDG_CONFIG_HOME="$HOME/.config"

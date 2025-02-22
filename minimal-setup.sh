@@ -8,6 +8,8 @@ fi
 
 clear
 
+git clone https://github.com/mfutselaar/nvim.git
+
 rm $HOME/.zshrc $HOME/.gitconfig
 rm .zshrc aliases quotes.txt
 
@@ -22,8 +24,6 @@ fi
 cat ~/.config/resources/generic/ssh/config >> ~/.ssh/config
 cat ~/.config/resources/generic/ssh/authorized_keys >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
-
-git submodule update --init
 
 git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
 

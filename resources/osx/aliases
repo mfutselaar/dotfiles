@@ -1,4 +1,3 @@
-alias tmu="tmux a || tmux new"
 alias aseprite="~/.local/share/aseprite/aseprite"
 alias phpunit="vendor/bin/phpunit"
 alias pint="vendor/bin/pint --dirty"
@@ -8,24 +7,6 @@ alias docker=podman
 alias setup-gitea="cp -R ~/.local/share/development/.gitea ."
 alias setup-laravel="rsync -av --exclude='README.md' --exclude='.gitignore' --exclude='.git/' --exclude='.idea/' ~/Repository/codequality-laravel/ ."
 alias setup-web="cp ~/Repository/codequality-laravel/.editorconfig ."
-
-gac() {
-        git add .
-        if [ -n "$1" ]; then
-                if [[ "$1" == "--amend" ]]; then
-                        git commit --amend
-                else
-                        git commit -m "$@"
-                fi
-        else
-                git commit
-        fi
-}
-
-gacp() {
-        gac $@
-        git push
-}
 
 dev() {
     cd ~/Repository/$1
