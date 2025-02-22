@@ -1,7 +1,7 @@
 theme = "Kanagawa Dragon"
-gtk-tabs-location = bottom
 window-theme = dark
-window-decoration = false
+
 clipboard-read = allow
 clipboard-paste-protection = false
+
 shell-integration = zsh

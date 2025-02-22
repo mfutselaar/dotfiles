@@ -8,6 +8,11 @@ if [ -f $HOME/.config/aliases ]; then
         source $HOME/.config/aliases >&2
 fi
 
+if command -v kind &> /dev/null
+then
+        source $HOME/.config/resources/generic/kind
+fi
+
 alias vi=$(which nvim)
 alias vim=/usr/bin/vi
 alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
@@ -37,3 +42,7 @@ export EDITOR=nvim
 
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_frappe.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/mathijs/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
