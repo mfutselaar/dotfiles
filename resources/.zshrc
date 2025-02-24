@@ -16,7 +16,14 @@ fi
 alias vi=$(which nvim)
 alias vim=/usr/bin/vi
 alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
-alias tmu="tmux a || tmux new"
+
+tmu() {
+  if [ -n "$1" ]; then
+    tmux attach-session -t "$1" || tmux new-session -s "$1"
+  else
+    tmux attach-session || tmux new-session
+  fi
+}
 
 gac() {
         git add .

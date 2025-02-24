@@ -10,4 +10,6 @@ if [[ "$(hostname)" == "ragnar" ]]; then
     }
 fi
 
-
+clang-format() {
+    $HOME/.local/share/nvim/mason/packages/clang-format/venv/bin/clang-format -i -style=file $@
+}
