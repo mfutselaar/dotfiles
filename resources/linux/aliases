@@ -1,4 +1,4 @@
-if [[ "$(hostname)" == "ragnar" ]]; then
+if [[ "$(cat /etc/hostname)" == "ragnar" ]]; then
     alias nginx-config="cd /home/mathijs/docker/development/data/nginx/config/conf.d"
     alias upcon=/home/mathijs/update-container.sh
 

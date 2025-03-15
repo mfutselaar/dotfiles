@@ -1,0 +1,9 @@
+autologin.saved_credentials="{\"mfutselaar\":[\"mfutselaar\",\"eUi7/DBd+UuwCQjuVKbsWk81j+c5f+Y2COVPjnL4j03tksPcxaetV4zMOUguEAaSKtWpQYBjweTMeLa8rDnY5Z2W8wLTpMjYXBkR4p7YltjWKaI2bqEW+Qfpi8453vDjuiadjg3Dn5z8BSM8Nj3QycdVpitydENBqb+rwAUBRP3jpAeEmDL/UlDnDReu/9virc8QHHI5BMVxrJ64/ljR8pd2L7nbAPS0j0gL6BcP8+jSrC0EjePzJpWH2beAevNo\"]}"
+autologin.blob="eUi7/DBd+UuwCQjuVKbsWk81j+c5f+Y2COVPjnL4j03tksPcxaetV4zMOUguEAaSKtWpQYBjweTMeLa8rDnY5Z2W8wLTpMjYXBkR4p7YltjWKaI2bqEW+Qfpi8453vDjuiadjg3Dn5z8BSM8Nj3QycdVpitydENBqb+rwAUBRP3jpAeEmDL/UlDnDReu/9virc8QHHI5BMVxrJ64/ljR8pd2L7nbAPS0j0gL6BcP8+jSrC0EjePzJpWH2beAevNo"
+autologin.username="mfutselaar"
+es.send-on-startup=true
+core.clock_delta=0
+storage.last-location="/home/mathijs/.cache/spotify/Storage"
+autologin.canonical_username="mfutselaar"
+es.use-lmdb=true
+app.last-launched-version="1.2.59.514.g834e17d4"
