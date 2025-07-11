@@ -65,6 +65,9 @@ export EDITOR=nvim
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_frappe.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"
 
+export HSA_OVERRIDE_GFX_VERSION=11.0.0
+export ROCM_PATH=/opt/rocm
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/mathijs/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

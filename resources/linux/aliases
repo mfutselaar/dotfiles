@@ -13,3 +13,14 @@ fi
 clang-format() {
     $HOME/.local/share/nvim/mason/packages/clang-format/venv/bin/clang-format -i -style=file $@
 }
+
+pacman-purge() {
+    sudo pacman -Sc
+    sudo pacman -Scc
+    pacman -Qtdq | sudo pacman -Rns -
+}
+
+system-update() {
+    sudo pacman -Syyu
+    yay
+}
