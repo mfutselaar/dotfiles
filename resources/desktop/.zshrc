@@ -4,11 +4,10 @@ export GOPATH=~/.local/share/go
 export GOBIN=$GOPATH/bin
 
 emulator=${TERMINAL_EMULATOR:-default}
-host=$(hostname)
 
 autoload colors; colors
 
-if [ $host = "Lagertha" ]; then
+if [[ "$OSTYPE" == "darwin"  ]]; then
 	if [ $emulator = "JetBrains-JediTerm" ]; then
 		echo " $fg[white]Start podman: $fg[green]podman machine $fg[magenta]start$reset_color"
 		echo "  $fg[white]Stop podman: $fg[green]podman machine $fg[magenta]stop$reset_color"
@@ -20,10 +19,6 @@ if [ $host = "Lagertha" ]; then
 
 	echo ""
 fi
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

@@ -25,7 +25,7 @@ fi
 
 if command -v kind &> /dev/null
 then
-        source $HOME/.config/resources/generic/kind
+        source $HOME/.config/resources/kind
 fi
 
 alias vi=$(which nvim)
@@ -67,7 +67,3 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export ROCM_PATH=/opt/rocm
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/mathijs/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

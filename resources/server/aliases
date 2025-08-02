@@ -11,18 +11,3 @@ if [[ "$(cat /etc/hostname)" == "ragnar" ]]; then
         cd -
     }
 fi
-
-clang-format() {
-    $HOME/.local/share/nvim/mason/packages/clang-format/venv/bin/clang-format -i -style=file $@
-}
-
-pacman-purge() {
-    sudo pacman -Rns $(pacman -Qdtq)
-    sudo pacman -Sc
-    sudo pacman -Scc
-}
-
-system-update() {
-    sudo pacman -Syyu
-    yay
-}
