@@ -18,16 +18,14 @@ if [[ "$OSTYPE" == "darwin" ]]; then
         cd ~/Repository/$1
 
         if [ -n "$2" ]; then
-            if [ -n "$2" ]; then
-                    case "$2" in
-                        p) phpstorm $(pwd) ;;
-                        r) rider $(pwd) ;;
-                        a) studio $(pwd) ;;
-                        j) idea $(pwd) ;;
-                        c) clion $(pwd) ;;
-                        *) nvim $(pwd) ;;
-                    esac
-            fi
+            case "$2" in
+                p) phpstorm $(pwd) ;;
+                r) rider $(pwd) ;;
+                a) studio $(pwd) ;;
+                j) idea $(pwd) ;;
+                c) clion $(pwd) ;;
+                *) nvim $(pwd) ;;
+            esac
        fi
     }
 else
@@ -35,17 +33,15 @@ else
         cd ~/Repository/$1
 
         if [ -n "$2" ]; then
-            if [ -n "$2" ]; then
-                case "$2" in
-                        p) swaymsg exec ~/phpstorm/bin/phpstorm $(pwd) ;;
-                        r) swaymsg exec ~/rider/bin/rider $(pwd) ;;
-                        a) swaymsg exec ~/android-studio/bin/studio $(pwd) ;;
-                        j) swaymsg exec ~/idea/bin/idea $(pwd) ;;
-                        c) swaymsg exec ~/clion/bin/clion $(pwd) ;;
-                        *) nvim $(pwd) ;;
-                esac
-            fi
-       fi
+            case "$2" in
+                p) swaymsg exec ~/phpstorm/bin/phpstorm $(pwd) ;;
+                r) swaymsg exec ~/rider/bin/rider $(pwd) ;;
+                a) swaymsg exec ~/android-studio/bin/studio $(pwd) ;;
+                j) swaymsg exec ~/idea/bin/idea $(pwd) ;;
+                c) swaymsg exec ~/clion/bin/clion $(pwd) ;;
+                *) nvim $(pwd) ;;
+            esac
+        fi
     }
 
     pacman-purge() {
