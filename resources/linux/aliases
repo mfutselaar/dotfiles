@@ -1,3 +1,5 @@
+alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
+
 if [[ "$(cat /etc/hostname)" == "ragnar" ]]; then
     alias nginx-config="cd /home/mathijs/docker/development/data/nginx/config/conf.d"
     alias upcon=/home/mathijs/update-container.sh
@@ -15,9 +17,9 @@ clang-format() {
 }
 
 pacman-purge() {
+    sudo pacman -Rns $(pacman -Qdtq)
     sudo pacman -Sc
     sudo pacman -Scc
-    pacman -Qtdq | sudo pacman -Rns -
 }
 
 system-update() {

@@ -1,10 +1,45 @@
-{
+[
+  {
+    "layer": "top",
+    "position": "top",
+    "output": "DP-2",
+    "modules-left": [ "sway/workspaces" ],
+    "modules-center": [ "mpris" ],
+    "modules-right": [ "clock", "tray" ],
+    "sway/workspaces": {
+      "format": "{value}",
+      "on-click": "activate"
+    },
+    "mpris": {
+      "interval": 1,
+      "format": "{player_icon} {c}",
+      "format-paused": "{status_icon} <i>{dynamic}</i>",
+      "player-icons": {
+	    "default": "▶",
+		"mpv": "🎵"
+	  },
+	  "status-icons": {
+		"paused": "⏸"
+	  }
+    },
+    "clock": {
+      "timezone": "Europe/Amsterdam",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format": "{:%A %d %B - %H:%M}"
+    },
+    "tray": {
+      "icon-size": 21,
+      "spacing": 10
+    },
+  },
+  {
   "layer": "top",
   "position": "top",
+  "output": "DP-1",
   "modules-left": [
-        "hyprland/workspaces"
+        "sway/workspaces",
     ],
-  "modules-center": ["clock"],
+  "modules-center": [ "clock" ],
   "modules-right": [
     "disk",
     "disk#2",
@@ -14,12 +49,9 @@
     "tray",
     "custom/lock"
   ],
-  "hyprland/workspaces": {
-    "format": "{name}: {icon}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
+  "sway/workspaces": {
+    "format": "{value}",
+    "on-click": "activate"
   },
   "disk": {
     "path": "/",
@@ -38,7 +70,7 @@
   "clock": {
     "timezone": "Europe/Amsterdam",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%d - %H:%M}"
+    "format": "{:%A %d %B - %H:%M}"
   },
   "network": {
     "format-wifi": "󰤢 ",
@@ -62,7 +94,8 @@
     "format-icons": {
       "default": ["", "", " "]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "max-volume": 153
   },
   "custom/lock": {
     "tooltip": false,
@@ -73,4 +106,4 @@
      "format": "<span class='icon'>{icon}</span> <span class='text'>{text}</span>"
   }
 }
-
+]

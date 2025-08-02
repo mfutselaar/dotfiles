@@ -2,7 +2,10 @@
 exec ~/.screenlayout/default.sh
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+<<<<<<< HEAD
 exec --no-startup-id nitrogen --restore
+=======
+>>>>>>> refs/remotes/origin/main
 exec --no-startup-id ulauncher --hide-window
 set $mod Mod4
 
@@ -103,9 +106,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+<<<<<<< HEAD
 set $ws1 "1: IDE"
 set $ws3 "3: Firefox"
 set $ws2 "2: Neovim"
+=======
+set $ws1 "1: Neovim"
+set $ws2 "2: Firefox"
+set $ws3 "3: IDE"
+>>>>>>> refs/remotes/origin/main
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -251,14 +260,20 @@ for_window [class="1Password"] floating enable
 for_window [class="Thunar"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Nitrogen"] floating enable
+<<<<<<< HEAD
 for_window [class="Engine"] floating enable
 for_window [class="qrenderdoc"] floating enable, move to output $mon2
 for_window [class="blueman-manager"] floating enable
+=======
+for_window [title="MeinKraft"] floating enable
+for_window [class="qrenderdoc"] floating enable, move to output $mon2
+>>>>>>> refs/remotes/origin/main
 
 workspace $ws1 output $mon1
 workspace $ws3 output $mon2
 workspace $ws9 output $mon2
 
+<<<<<<< HEAD
 assign [class="jetbrains-clion"] $ws1
 assign [class="spotify"] $ws9
 
@@ -268,12 +283,30 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec ~/clion/bin/clion'
 exec --no-startup-id i3-msg 'workspace $ws2; exec ghostty --class=i3.ghostty.nvim --window-decoration=false -e nvim'
 exec --no-startup-id i3-msg 'workspace $ws2; exec ghostty --class=i3.ghostty.cli --window-decoration=false'
 exec --no-startup-id i3-msg 'workspace $ws2; exec ghostty --class=i3.ghostty.peaclock --window-decoration=false -e /usr/local/bin/peaclock'
+=======
+assign [class="jetbrains-clion"] $ws3
+
+# Start applications with specific class names
+exec --no-startup-id i3-msg 'workspace $ws1; exec ghostty --class=i3.ghostty.nvim --window-decoration=false -e nvim'
+exec --no-startup-id i3-msg 'workspace $ws1; exec ghostty --class=i3.ghostty.cli --window-decoration=false'
+exec --no-startup-id i3-msg 'workspace $ws1; exec ghostty --class=i3.ghostty.peaclock --window-decoration=false -e /usr/local/bin/peaclock'
+
+exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspace-1.json'
+>>>>>>> refs/remotes/origin/main
 
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspace-1.json'
 
+<<<<<<< HEAD
 exec --no-startup-id i3-msg 'workspace $ws3; exec firefox'
 
 exec --no-startup-id i3-msg 'workspace $ws9; exec /home/mathijs/.local/share/spotify-launcher/install/usr/share/spotify/spotify'
+=======
+workspace $ws3 output $mon1
+exec --no-startup-id 13-msg 'workspace $ws3; exec ghostty'
+
+workspace $ws9 output $mon2
+exec --no-startup-id i3-msg 'workspace $ws9; exec spotify-launcher'
+>>>>>>> refs/remotes/origin/main
 
 exec --no-startup-id i3-msg 'workspace $ws1; move workspace to output $mon1'
 exec --no-startup-id i3-msg 'workspace $ws3; move workspace to output $mon2'
