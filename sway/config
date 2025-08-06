@@ -189,6 +189,8 @@ for_window [class="Joplin"] floating enable
 for_window [title="^Picture-in-Picture$"] floating enable
 for_window [app_id="org.kde.kcalc"] floating enable
 
+for_window [app_id="nl.matttt.dirtyengine"] floating enable
+
 assign [class="Spotify"] $ws8
 assign [app_id="firefox"] $ws3
 assign [class="discord"] $ws10
