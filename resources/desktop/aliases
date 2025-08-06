@@ -15,7 +15,9 @@ if [[ "$OSTYPE" == "darwin" ]]; then
     alias aseprite="~/.local/share/aseprite/aseprite"
 
     dev() {
-        cd ~/Repository/$1
+        if [ "$1" != "." ]; then
+            cd ~/Repository/$1
+        fi
 
         if [ -n "$2" ]; then
             case "$2" in
@@ -30,7 +32,9 @@ if [[ "$OSTYPE" == "darwin" ]]; then
     }
 else
     dev() {
-        cd ~/Repository/$1
+        if [ "$1" != "." ]; then
+            cd ~/Repository/$1
+        fi
 
         if [ -n "$2" ]; then
             case "$2" in
@@ -42,6 +46,11 @@ else
                 *) nvim $(pwd) ;;
             esac
         fi
+    }
+
+    sway-config() {
+        nvim ~/.config/sway/config
+        swaymsg reload
     }
 
     pacman-purge() {
