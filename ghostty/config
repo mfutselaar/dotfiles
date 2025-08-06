@@ -1,6 +1,8 @@
 theme = "Kanagawa Dragon"
 window-theme = dark
 
+font-feature = "-calt"
+
 clipboard-read = allow
 clipboard-paste-protection = false
 
