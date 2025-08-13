@@ -1,9 +1,13 @@
 alias phpunit="vendor/bin/phpunit"
 alias pint="vendor/bin/pint --dirty"
-alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9000 -dxdebug.start_with_request=yes "
+alias xdebug="php -dxdebug.mode=debug -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9003 -dxdebug.start_with_request=yes "
 alias docker=podman
 alias setup-laravel="rsync -av --exclude='README.md' --exclude='.gitignore' --exclude='.git/' --exclude='.idea/' ~/Repository/codequality-laravel/ ."
 alias setup-web="cp ~/Repository/codequality-laravel/.editorconfig ."
+alias car="cargo run "
+alias cab="cargo build "
+alias gor="go run "
+alias gob="go build "
 
 clang-format() {
     $HOME/.local/share/nvim/mason/packages/clang-format/venv/bin/clang-format -i -style=file $@
@@ -48,15 +52,20 @@ else
         fi
     }
 
-    sway-config() {
+    edit-sway() {
         nvim ~/.config/sway/config
         swaymsg reload
     }
 
-    pacman-purge() {
+    edit-cheatsheet() {
+        nvim ~/.local/share/cheatsheet-rs/cheatsheet.json
+    }
+
+    system-purge() {
         sudo pacman -Rns $(pacman -Qdtq)
         sudo pacman -Sc
         sudo pacman -Scc
+        pip cache purge
     }
 
     system-update() {
@@ -87,3 +96,8 @@ _artisan_autocomplete() {
 }
 
 compdef _artisan_autocomplete artisan
+
+venv() {
+    python3 -m venv "$1/.venv"
+    source "$1/.venv/bin/activate"
+}

@@ -1,5 +1,10 @@
 autoload -Uz compinit && compinit
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 bindkey -s '^[OH' '^[[H'  # home
 bindkey -s '^[OF' '^[[F'  # end
 bindkey -s '^[OA' '^[[A'  # up
@@ -58,12 +63,19 @@ gacp() {
         git push
 }
 
-export PATH="$HOME/.local/bin:$PATH:/usr/local/go/bin"
+export PATH="$HOME/.local/bin:/usr/local/go/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_frappe.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
+
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export ROCM_PATH=/opt/rocm

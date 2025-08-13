@@ -4,18 +4,19 @@ set $fileManager thunar
 set $browser firefox
 set $menu ulauncher-toggle
 set $wallpaper_path $HOME/Pictures/Wallpapers
+set $editor nvim
 
 set $primary_monitor DP-1
 set $secondary_monitor DP-2
 
 output $primary_monitor resolution 3440x1440@144.00100Hz position 0,0 bg '$wallpaper_path/japan.png' fill
-#output $secondary_monitor resolution 2550x1440 position 3440,0 bg '$wallpaper_path/nebula.jpg' fill
-output $secondary_monitor resolution 2550x1440 position 3440,0
+output $secondary_monitor resolution 2550x1440 position 3440,0 bg '$wallpaper_path/nebula.jpg' fill
+#output $secondary_monitor resolution 2550x1440 position 3440,0
 
 set $ws1 "1: "
-set $ws2 "2"
+set $ws2 "2: "
 set $ws3 "3: "
-set $ws4 "4: "
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -40,7 +41,7 @@ exec swayidle -w \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 000000'
 
-exec --no-startup-id /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2
+#exec --no-startup-id /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2
 exec --no-startup-id openrgb -p Mathijs
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id waybar
@@ -63,32 +64,35 @@ input type:keyboard {
 }
 
 focus_follows_mouse no
+floating_modifier $mod normal
 
+bindsym $mod+l exec --no-startup-id swaylock -f -c 000000
 bindsym $mod+Return exec $term
 bindsym $mod+q kill
 bindsym $mod+Shift+q exec swaynag -t warning -m 'Logout?' -B 'Yes' 'swaymsg exit'
 bindsym $mod+Shift+r exec pkill waybar || waybar
-bindsym $mod+e exec $fileManager
+bindsym $mod+e exec --no-startup-id $fileManager
+bindsym $mod+Shift+e exec --no-startup-id $editor
 bindsym $mod+space exec --no-startup-id $menu
 bindsym Alt+End exec --no-startup-id ~/.local/bin/gammastep-toggle.sh 
-bindsym $mod+b exec $browser
+bindsym $mod+b exec --no-startup-id $browser
 bindsym Ctrl+Shift+Escape exec --no-startup-id ghostty --class=sway.ghostty.btop -e /usr/bin/btop
 bindsym $mod+slash exec pkill wayclock || /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2 -a /home/mathijs/Repository/wayclock/assets
 bindsym $mod+c exec --no-startup-id kcalc
+bindsym $mod+Shift+c exec --no-startup-id ghostty --class=sway.ghostty.cheatsheet --background-opacity=0.7 -e /home/mathijs/Repository/cheatsheet/target/release/cheatsheet
 
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
+bindsym $mod+s exec grim - | wl-copy
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym Print exec mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+bindsym Shift+Print exec mkdir -p ~/Pictures/Screenshots && grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
-#bindsym $mod+Shift+z exec --no-startup-id /home/mathijs/.local/bin/resize_windows.sh
 bindsym $mod+Shift+z resize set width 75 ppt
+bindsym $mod+Alt+Shift+r reload
 
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -122,25 +126,26 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+bindsym $mod+Alt+1 resize set width 10 ppt
+bindsym $mod+Alt+2 resize set width 20 ppt
+bindsym $mod+Alt+3 resize set width 30 ppt
+bindsym $mod+Alt+4 resize set width 40 ppt
+bindsym $mod+Alt+5 resize set width 50 ppt
+bindsym $mod+Alt+6 resize set width 25 ppt
+bindsym $mod+Alt+7 resize set width 33 ppt
+bindsym $mod+Alt+8 resize set width 66 ppt
+
 bindsym $mod+h splith
 bindsym $mod+v splitv
-
-#    bindsym $mod+s layout stacking
-#    bindsym $mod+w layout tabbed
-#    bindsym $mod+e layout toggle split
+bindsym $mod+Alt+s layout toggle split
 
 bindsym $mod+Alt+Return fullscreen
 bindsym $mod+Shift+v floating toggle
 
-# Swap focus between the tiling area and the floating area
-#    bindsym $mod+space focus mode_toggle
-
-# Move focus to the parent container
-# bindsym $mod+a focus parent
-
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
@@ -156,18 +161,6 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
-
-bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-
-bindsym $mod+s exec grim - | wl-copy
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
-
-bindsym Print exec mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
-bindsym Shift+Print exec mkdir -p ~/Pictures/Screenshots && grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
 for_window [class="^.*"] border pixel 1
 for_window [floating] border normal
@@ -191,11 +184,13 @@ for_window [app_id="org.kde.kcalc"] floating enable
 
 for_window [app_id="nl.matttt.dirtyengine"] floating enable
 
+for_window [app_id="sway.ghostty.cheatsheet"] floating enable, resize set 50 ppt 50 ppt
+
 assign [class="Spotify"] $ws8
 assign [app_id="firefox"] $ws3
 assign [class="discord"] $ws10
 assign [class="steam"] $ws9
 assign [class="heroic"] $ws9
-assign [class="^jetbrains-"] $ws4
+assign [class="^jetbrains-"] $ws2
 
 include /etc/sway/config.d/*
