@@ -61,7 +61,7 @@ else
     }
 
     edit-cheatsheet() {
-        nvim ~/.local/share/cheatsheet-rs/cheatsheet.json
+        nvim ~/.config/cheatsheet-rs/cheatsheet.json
     }
 
     system-purge() {

@@ -1,180 +1,181 @@
 {
-   "environments": [
+  "environments": [
+    {
+      "environment": "GhosTTY",
+      "inputs": [
         {
-            "environment": "SwayWM",
-            "prefix": "󰘳",
-            "inputs": [
-                {
-                    "input": "** + 󰌑",
-                    "description": "Open terminal"
-                },
-                {
-                    "input": "** + h",
-                    "description": "Toggle horizontal split"
-                },
-                {
-                    "input": "** + v",
-                    "description": "Toggle vertical split"
-                },
-                {
-                    "input": "** + q",
-                    "description": "Close application"
-                },
-                {
-                    "input": "** + b",
-                    "description": "Open browser"
-                },
-                {
-                    "input": "󰘴 + 󰘶 + 󱊷",
-                    "description": "Open btop"
-                },
-                {
-                    "input": "** + e",
-                    "description": "Filemanager"
-                },
-                {
-                    "input": "** + R",
-                    "description": "Toggle Waybar"
-                },
-                {
-                    "input": "** + c",
-                    "description": "Open calculator"
-                },
-                {
-                    "input": "** + Z",
-                    "description": "Resize current window to 75% of available space"
-                },
-                {
-                    "input": "** + 󰘶 + 󰘵 + R",
-                    "description": "Reload config"
-                }
-            ]
-        },
-        {
-            "environment": "Tmux",
-            "prefix": "󰘴 + b,",
-            "inputs": [
-                {
-                    "input" : "** \"",
-                    "description": "Open horizontal panel"
-                },
-                {
-                    "input": "** %",
-                    "description": "Open vertical panel"
-                },
-                {
-                    "input": "** 󱁐",
-                    "description": "Toggle between pane layouts"
-                },
-                {
-                    "input": "** x",
-                    "description": "Close current pane"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input": "** {",
-                    "description": "Move current pane left"
-                },
-                {
-                    "input": "** }",
-                    "description": "Move current pane right"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input": "** 󰘴 + r",
-                    "description": "Load session"
-                },
-                {
-                    "input": "** 󰘴 + s",
-                    "description": "Save session"
-                },
-                {
-                    "input": "** d",
-                    "description": "Detach session"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input":"** [",
-                    "description":"Enter copy mode"
-                }
-            ]
-        },
-        {
-            "environment": "GhosTTY",
-            "inputs": [
-                {
-                    "input": "󰘴 + 󰘶 + ,",
-                    "description": "Reload configuration"
-                }
-            ]
-        },
-        {
-            "environment": "ZSH",
-            "inputs": [
-                {
-                    "input": "tmu <session>",
-                    "description": "Attach to or create tmux session"
-                },
-                {
-                    "input": "xdebug <path>",
-                    "description": "Run php script with xdebug"
-                },
-                {
-                    "input": "pint",
-                    "description": "vendor/bin/pint --dirty"
-                },
-                {
-                    "input": "phpunit",
-                    "description": "vendor/bin/phpunit"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input": "gac",
-                    "description": "git add & commit"
-                },
-                {
-                    "input": "gacp",
-                    "description": "git add & commit & push"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input": "car",
-                    "description": "cargo run"
-                },
-                {
-                    "input": "cab",
-                    "description": "cargo build"
-                },
-                {
-                    "input": "---"
-                },
-                {
-                    "input": "gor",
-                    "description": "go run"
-                },
-                {
-                    "input": "gob",
-                    "description": "go build"
-                },
-                {
-                    "input": "gmt",
-                    "description": "go mod tidy"
-                },
-                {
-                    "input": "gmi",
-                    "description": "go mod init"
-                }
-            ]
+          "input": "󰘴 + 󰘶 + ,",
+          "description": "Reload configuration"
         }
-    ]
+      ]
+    },
+    {
+      "environment": "SwayWM",
+      "prefix": "󰘳",
+      "inputs": [
+        {
+          "input": "** + b",
+          "description": "Open browser"
+        },
+        {
+          "input": "** + c",
+          "description": "Open calculator"
+        },
+        {
+          "input": "** + e",
+          "description": "Filemanager"
+        },
+        {
+          "input": "** + h",
+          "description": "Toggle horizontal split"
+        },
+        {
+          "input": "** + q",
+          "description": "Close application"
+        },
+        {
+          "input": "** + R",
+          "description": "Toggle Waybar"
+        },
+        {
+          "input": "** + v",
+          "description": "Toggle vertical split"
+        },
+        {
+          "input": "** + Z",
+          "description": "Resize current window to 75% of available space"
+        },
+        {
+          "input": "** + 󰌑",
+          "description": "Open terminal"
+        },
+        {
+          "input": "** + 󰘶 + 󰘵 + R",
+          "description": "Reload config"
+        },
+        {
+          "input": "󰘴 + 󰘶 + 󱊷",
+          "description": "Open btop"
+        }
+      ]
+    },
+    {
+      "environment": "Tmux",
+      "prefix": "󰘴 + b,",
+      "inputs": [
+        {
+          "input": "** %",
+          "description": "Open vertical panel"
+        },
+        {
+          "input": "** \"",
+          "description": "Open horizontal panel"
+        },
+        {
+          "input": "** d",
+          "description": "Detach session"
+        },
+        {
+          "input": "** x",
+          "description": "Close current pane"
+        },
+        {
+          "input": "** 󱁐",
+          "description": "Toggle between pane layouts"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "** {",
+          "description": "Move current pane left"
+        },
+        {
+          "input": "** }",
+          "description": "Move current pane right"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "** 󰘴 + r",
+          "description": "Load session"
+        },
+        {
+          "input": "** 󰘴 + s",
+          "description": "Save session"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "** [",
+          "description": "Enter copy mode"
+        }
+      ]
+    },
+    {
+      "environment": "ZSH",
+      "inputs": [
+        {
+          "input": "cab",
+          "description": "cargo build"
+        },
+        {
+          "input": "car",
+          "description": "cargo run"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "gac",
+          "description": "git add & commit"
+        },
+        {
+          "input": "gacp",
+          "description": "git add & commit & push"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "gmi",
+          "description": "go mod init"
+        },
+        {
+          "input": "gmt",
+          "description": "go mod tidy"
+        },
+        {
+          "input": "gob",
+          "description": "go build"
+        },
+        {
+          "input": "gor",
+          "description": "go run"
+        },
+        {
+          "input": "---"
+        },
+        {
+          "input": "phpunit",
+          "description": "vendor/bin/phpunit"
+        },
+        {
+          "input": "pint",
+          "description": "vendor/bin/pint --dirty"
+        },
+        {
+          "input": "tmu <session>",
+          "description": "Attach to or create tmux session"
+        },
+        {
+          "input": "xdebug <path>",
+          "description": "Run php script with xdebug"
+        }
+      ]
+    }
+  ]
 }
+
