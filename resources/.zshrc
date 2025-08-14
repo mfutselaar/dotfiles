@@ -39,7 +39,12 @@ alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
 
 tmu() {
   if [ -n "$1" ]; then
-    tmux attach-session -t "$1" || tmux new-session -s "$1"
+    SESS="$1"
+    if [ "$SESS" = "." ]; then
+        SESS=$(basename "$PWD" | sed 's/[^a-zA-Z0-9]/_/g' | tr '[:upper:]' '[:lower:]')
+    fi
+
+    tmux attach-session -t "$SESS" || tmux new-session -s "$SESS"
   else
     tmux attach-session || tmux new-session
   fi
@@ -79,3 +84,5 @@ eval "$(pyenv virtualenv-init -)"
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export ROCM_PATH=/opt/rocm
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
