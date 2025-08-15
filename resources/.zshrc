@@ -78,8 +78,11 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh.omp.json)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+
+if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
+        eval "$(pyenv init - zsh)"
+        eval "$(pyenv virtualenv-init -)"
+fi
 
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
