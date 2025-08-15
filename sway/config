@@ -22,7 +22,8 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8: "
 set $ws9 "9: 󰊗"
-set $ws10 "10: "
+#set $ws10 "10: "
+set $ws10 "10: 󰭹"
 set $ws69 "69:  "
 
 workspace $ws1 output $primary_monitor
@@ -55,6 +56,7 @@ exec --no-startup-id swaymsg 'workspace $ws9; exec steam'
 exec --no-startup-id swaymsg 'workspace $ws9; exec heroic'
 exec --no-startup-id swaymsg 'workspace $ws3; exec firefox'
 exec --no-startup-id swaymsg 'workspace $ws8; exec /home/mathijs/.local/share/spotify-launcher/install/usr/share/spotify/spotify'
+exec --no-startup-id swaymsg 'workspace $ws10; exec /home/mathijs/.local/bin/whatsapp-web'
 
 exec --no-startup-id swaymsg 'workspace $ws1; move workspace to output $primary_monitor'
 exec --no-startup-id swaymsg 'workspace $ws3; move workspace to output $secondary_monitor'
@@ -184,7 +186,7 @@ for_window [app_id="org.kde.kcalc"] floating enable
 
 for_window [app_id="nl.matttt.dirtyengine"] floating enable
 
-for_window [app_id="sway.ghostty.cheatsheet"] floating enable, resize set 50 ppt 50 ppt
+for_window [app_id="sway.ghostty.cheatsheet"] floating enable, resize set 60 ppt 50 ppt
 
 assign [class="Spotify"] $ws8
 assign [app_id="firefox"] $ws3
@@ -192,5 +194,8 @@ assign [class="discord"] $ws10
 assign [class="steam"] $ws9
 assign [class="heroic"] $ws9
 assign [class="^jetbrains-"] $ws2
+
+# Chromium WhatsApp PWA
+assign [app_id="chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"] $ws10
 
 include /etc/sway/config.d/*
