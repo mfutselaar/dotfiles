@@ -1,0 +1,127 @@
+{
+  "runner": {
+    "command": "bash",
+    "args": [
+      "-c"
+    ]
+  },
+  "after-commands": [
+    "git init .",
+    "git add .",
+    "git commit -m 'init'"
+  ],
+  "types": [
+    {
+      "type": "laravel",
+      "commands": [
+        "composer create-project laravel/laravel ."
+      ],
+      "parent": {
+        "type": "php",
+        "run-commands": false
+      },
+      "files": [
+        [
+          "$HOME/Repository/.defaults/codequality-laravel/grumphp.yml",
+          "grumphp.yml"
+        ],
+        [
+          "$HOME/Repository/.defaults/codequality-laravel/phpstan.neon",
+          "phpstan.neon"
+        ],
+        [
+          "$HOME/Repository/.defaults/codequality-laravel/pint.json",
+          "pint.json"
+        ]
+      ]
+    },
+    {
+      "type": "cpp",
+      "files": [
+        [
+          "$HOME/Repository/.defaults/cpp/.gitignore",
+          ".gitignore"
+        ],
+        [
+          "$HOME/Repository/.defaults/cpp/.clangd",
+          ".clangd"
+        ],
+        [
+          "$HOME/Repository/.defaults/cpp/.clang-format",
+          ".clang-format"
+        ],
+        [
+          "$HOME/Repository/.defaults/cpp/CMakeLists.txt",
+          "CMakeLists.txt"
+        ],
+        [
+          "$HOME/Repository/.defaults/cpp/src/main.cpp",
+          "src/main.cpp"
+        ]
+      ]
+    },
+    {
+      "type": "go",
+      "commands": [
+        "go mod init mfutselaar/$(basename $PWD)",
+        "echo $(basename $PWD) > .gitignore"
+      ]
+    },
+    {
+      "type": "php",
+      "parent": "web",
+      "commands": [
+        "composer init"
+      ],
+      "files": [
+        [
+          "$HOME/Repository/.defaults/codequality-laravel/.gitignore",
+          ".gitignore"
+        ]
+      ]
+    },
+    {
+      "type": "c",
+      "files": [
+        [
+          "$HOME/Repository/.defaults/c/.gitignore",
+          ".gitignore"
+        ],
+        [
+          "$HOME/Repository/.defaults/c/.clangd",
+          ".clangd"
+        ],
+        [
+          "$HOME/Repository/.defaults/c/CMakeLists.txt",
+          "CMakeLists.txt"
+        ],
+        [
+          "$HOME/Repository/.defaults/c/src/main.c",
+          "src/main.c"
+        ]
+      ]
+    },
+    {
+      "type": "web",
+      "files": [
+        [
+          "$HOME/Repository/.defaults/codequality-laravel/.editorconfig",
+          ".editorconfig"
+        ]
+      ]
+    },
+    {
+      "type": "rust",
+      "files": [
+        [
+          "$HOME/Repository/.defaults/rust/.gitignore",
+          ".gitignore"
+        ]
+      ],
+      "commands": [
+        "cargo init"
+      ]
+    }
+  ]
+}
+
