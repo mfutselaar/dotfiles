@@ -62,6 +62,12 @@
     },
     {
       "type": "go",
+      "files": [
+        [
+          "$HOME/Repository/.defaults/go/main.go", 
+          "main.go"
+        ]
+      ],
       "commands": [
         "go mod init mfutselaar/$(basename $PWD)",
         "echo $(basename $PWD) > .gitignore"

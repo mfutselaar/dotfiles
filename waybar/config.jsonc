@@ -2,7 +2,7 @@
   {
     "layer": "top",
     "position": "top",
-    "output": "DP-2",
+    "output": "DP-1",
     "modules-left": [ "sway/workspaces" ],
     "modules-center": [ "mpris" ],
     "modules-right": [ "clock", "tray" ],
@@ -36,7 +36,7 @@
   {
   "layer": "top",
   "position": "top",
-  "output": "DP-1",
+  "output": "DP-2",
   "modules-left": [
         "sway/workspaces",
     ],

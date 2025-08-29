@@ -5,13 +5,16 @@ set $browser firefox
 set $menu ulauncher-toggle
 set $wallpaper_path $HOME/Pictures/Wallpapers
 set $editor nvim
+set $biggerFloatingTerminal sway.ghostty.bigger_floating_terminal
+set $bigFloatingTerminal sway.ghostty.big_floating_terminal
+set $mediumFloatingTerminal sway.ghostty.medium_floating_terminal
+set $floatingTerminal sway.ghostty.floating_terminal
 
-set $primary_monitor DP-1
-set $secondary_monitor DP-2
+set $primary_monitor DP-2
+set $secondary_monitor DP-1
 
-output $primary_monitor resolution 3440x1440@144.00100Hz position 0,0 bg '$wallpaper_path/japan.png' fill
-output $secondary_monitor resolution 2550x1440 position 3440,0 bg '$wallpaper_path/nebula.jpg' fill
-#output $secondary_monitor resolution 2550x1440 position 3440,0
+output $primary_monitor resolution 3440x1440@144.00100Hz position 0,0
+output $secondary_monitor resolution 2550x1440 position 3440,0
 
 set $ws1 "1: "
 set $ws2 "2: "
@@ -43,6 +46,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 000000'
 
 #exec --no-startup-id /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2
+exec --no-startup-id /home/mathijs/.local/bin/wallpaper-cycle.sh
 exec --no-startup-id openrgb -p Mathijs
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id waybar
@@ -68,20 +72,22 @@ input type:keyboard {
 focus_follows_mouse no
 floating_modifier $mod normal
 
+bindsym $mod+Shift+k exec --no-startup-id $term --class=$bigFloatingTerminal -e /home/mathijs/.cargo/bin/pik -F 
+bindsym $mod+Shift+d exec --no-startup-id $term --class=$bigFloatingTerminal -e ssh -t ragnar /home/mathijs/.local/bin/lazydocker
 bindsym $mod+l exec --no-startup-id swaylock -f -c 000000
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term --class=$floatingTerminal
 bindsym $mod+q kill
 bindsym $mod+Shift+q exec swaynag -t warning -m 'Logout?' -B 'Yes' 'swaymsg exit'
 bindsym $mod+Shift+r exec pkill waybar || waybar
 bindsym $mod+e exec --no-startup-id $fileManager
-bindsym $mod+Shift+e exec --no-startup-id $editor
+bindsym $mod+Shift+e exec --no-startup-id $term --class=$biggerFloatingTerminal -e nvim
 bindsym $mod+space exec --no-startup-id $menu
 bindsym Alt+End exec --no-startup-id ~/.local/bin/gammastep-toggle.sh 
 bindsym $mod+b exec --no-startup-id $browser
-bindsym Ctrl+Shift+Escape exec --no-startup-id ghostty --class=sway.ghostty.btop -e /usr/bin/btop
-bindsym $mod+slash exec pkill wayclock || /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2 -a /home/mathijs/Repository/wayclock/assets
+bindsym Ctrl+Shift+Escape exec --no-startup-id $term --class=$mediumFloatingTerminal -e /usr/bin/btop
 bindsym $mod+c exec --no-startup-id kcalc
-bindsym $mod+Shift+c exec --no-startup-id ghostty --class=sway.ghostty.cheatsheet --background-opacity=0.7 -e /home/mathijs/Repository/cheatsheet/target/release/cheatsheet
+bindsym $mod+Shift+c exec --no-startup-id $term --class=$bigFloatingTerminal --background-opacity=0.7 -e /home/mathijs/Repository/cheatsheet/target/release/cheatsheet
 
 bindsym $mod+s exec grim - | wl-copy
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
@@ -179,7 +185,6 @@ for_window [app_id="firefox"] inhibit_idle
 for_window [title="Volume Control"] floating enable
 for_window [class="1Password"] floating enable
 for_window [app_id="thunar"] floating enable
-for_window [app_id="sway\.ghostty\.btop"] floating enable
 for_window [class="awakened-poe-trade"] floating enable, border none
 
 for_window [class="Joplin"] floating enable
@@ -187,9 +192,14 @@ for_window [class="Joplin"] floating enable
 for_window [title="^Picture-in-Picture$"] floating enable
 for_window [app_id="org.kde.kcalc"] floating enable
 
-for_window [app_id="nl.matttt.dirtyengine"] floating enable
+for_window [app_id="nl.matttt.dirtyengine"] floating enable, resize set 1920 px 1080 px, border normal
 
-for_window [app_id="sway.ghostty.cheatsheet"] floating enable, resize set 60 ppt 50 ppt
+for_window [app_id="mpv"] floating enable
+
+for_window [app_id=$biggerFloatingTerminal] floating enable, resize set 90 ppt 90 ppt
+for_window [app_id=$bigFloatingTerminal] floating enable, resize set 60 ppt 50 ppt
+for_window [app_id=$mediumFloatingTerminal] floating enable, resize set 50 ppt 50 ppt
+for_window [app_id=$floatingTerminal] floating enable
 
 assign [class="Spotify"] $ws8
 assign [app_id="firefox"] $ws3
