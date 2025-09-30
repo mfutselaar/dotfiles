@@ -61,6 +61,23 @@
       ]
     },
     {
+      "type": "dotnet",
+      "commands": [
+        "dotnet new sln"
+      ],
+      "files": [
+        "$HOME/Repository/.defaults/dotnet/.gitignore",
+        ".gitignore"
+      ]
+    },
+    {
+      "type": "csharp-console",
+      "parent": "dotnet",
+      "commands": [
+        "dotnet new console"
+      ]
+    },
+    {
       "type": "go",
       "files": [
         [

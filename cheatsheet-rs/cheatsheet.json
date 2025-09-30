@@ -22,12 +22,20 @@
           "description": "Open calculator"
         },
         {
+          "input": "** + D",
+          "description": "Open lazydocker (ragnar)"
+        },
+        {
           "input": "** + e",
           "description": "Filemanager"
         },
         {
           "input": "** + h",
           "description": "Toggle horizontal split"
+        },
+        {
+          "input": "** + K",
+          "description": "Open process killer"
         },
         {
           "input": "** + q",
@@ -45,9 +53,13 @@
           "input": "** + Z",
           "description": "Resize current window to 75% of available space"
         },
-        {
+         {
           "input": "** + 󰌑",
           "description": "Open terminal"
+        },
+        {
+          "input": "** + 󰘶 + 󰌑",
+          "description": "Open floating terminal"
         },
         {
           "input": "** + 󰘶 + 󰘵 + R",
@@ -135,6 +147,10 @@
         {
           "input": "gacp",
           "description": "git add & commit & push"
+        },
+        {
+          "input": "gpf <branch>",
+          "description": "git force push, branch is optional"
         },
         {
           "input": "---"

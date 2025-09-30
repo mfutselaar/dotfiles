@@ -68,7 +68,15 @@ gacp() {
         git push
 }
 
-export PATH="$HOME/.local/bin:/usr/local/go/bin:$PATH"
+gpf() {
+        if [ -n "$1" ]; then
+                git push $1 -f
+        else
+                git push -f
+        fi
+}
+
+export PATH="$HOME/.local/bin:$HOME/.local/share/npm/bin:/usr/local/go/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 
