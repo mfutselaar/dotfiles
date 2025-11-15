@@ -75,6 +75,31 @@ else
         sudo pacman -Syyu
         yay
     }
+
+    # xdg-ninja consolidated output
+    # ~/Repository/xdg-ninja/out.md
+
+    export XDG_DATA_HOME=$HOME/.local/share
+    export XDG_STATE_HOME=$HOME/.local/state
+    export XDG_CACHE_HOME=$HOME/.cache
+
+    # ~/.android/
+    export ANDROID_USER_HOME=$XDG_DATA_HOME/android
+    alias adb='HOME="$XDG_DATA_HOME"/android adb'
+    # ~/Android/
+    export ANDROID_HOME=$XDG_DATA_HOME/android/sdk
+    # ~/.cargo/
+    export CARGO_HOME=$XDG_DATA_HOME/cargo
+    # ~/.dosbox/
+    alias dosbox=dosbox -conf $XDG_CONFIG_HOME/dosbox/dosbox.conf
+    # ~/.dotnet/
+    export DOTNET_CLI_HOME=$XDG_DATA_HOME/dotnet
+    # ~/.gradle
+    export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+    # ~/.gtkrc-2.0
+    export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
+    # ~/.ICEauthority
+    export ICEAUTHORITY=$XDG_CONFIG_HOME/ICEauthority
 fi
 
 _dev_autocomplete() {

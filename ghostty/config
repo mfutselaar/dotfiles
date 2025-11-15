@@ -1,9 +1,10 @@
 theme = "Kanagawa Dragon"
 window-theme = dark
 
-font-feature = "-calt"
+#font-feature = "-calt"
 
 clipboard-read = allow
 clipboard-paste-protection = false
 
 shell-integration = zsh
+keybind = shift+enter=text:\x1b\r

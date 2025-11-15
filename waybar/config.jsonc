@@ -47,12 +47,24 @@
     "pulseaudio",
     "cpu",
     "memory",
+    "battery",
     "tray",
     "custom/lock"
   ],
   "sway/workspaces": {
     "format": "{value}",
     "on-click": "activate"
+  },
+  "battery": {
+      "bat": "hidpp_battery_2",
+      "interval": 60,
+      "states": {
+	"warning": 15,
+	"critical": 5
+      },
+      "format": "Mouse {capacity}% {icon}",
+      "format-icons": ["", "", "", "", ""],
+      "max-length": 25
   },
   "disk": {
     "path": "/",
@@ -88,7 +100,7 @@
   "memory": {
     "interval": 30,
     "format": "  {used:0.1f}G/{total:0.1f}G"
-  },
+  }, 
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "",

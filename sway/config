@@ -1,9 +1,12 @@
 set $mod Mod4
 set $term ghostty
-set $fileManager thunar
+#set $fileManager thunar
+set $fileManager nautilus 
 set $browser firefox
-set $menu ulauncher-toggle
+#set $menu ulauncher-toggle
+set $menu TERMINAL=$term rofi -modi "drun,window,filebrowser,ssh,run" -show drun
 set $wallpaper_path $HOME/Pictures/Wallpapers
+#set $clipboardManager wl-paste -t text --list --primary -w cliphist store
 set $editor nvim
 set $biggerFloatingTerminal sway.ghostty.bigger_floating_terminal
 set $bigFloatingTerminal sway.ghostty.big_floating_terminal
@@ -19,9 +22,9 @@ output $primary_monitor resolution 3440x1440@144.00100Hz position 0,0
 output $secondary_monitor resolution 2550x1440 position 3440,0
 #output $virtual_monitor disable
 
-set $ws1 "1: "
+set $ws1 "1: "
 set $ws2 "2: "
-set $ws3 "3: "
+set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -32,9 +35,9 @@ set $ws9 "9: 󰊗"
 set $ws10 "10: 󰭹"
 set $ws69 "69:  "
 
-workspace $ws1 output $primary_monitor
+workspace $ws1 output $secondary_monitor
 workspace $ws2 output $primary_monitor
-workspace $ws3 output $secondary_monitor
+workspace $ws3 output $primary_monitor
 workspace $ws4 output $primary_monitor
 workspace $ws5 output $primary_monitor
 workspace $ws6 output $secondary_monitor
@@ -49,27 +52,27 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 000000'
 
 #exec --no-startup-id /home/mathijs/Repository/wayclock/cmake-build-release/wayclock DP-2
+#exec --no-startup-id $clipboardManager
 exec --no-startup-id blueman-applet
 exec --no-startup-id swww-daemon
 exec --no-startup-id /home/mathijs/.local/bin/wallpaper-cycle.sh
 exec --no-startup-id openrgb -p Mathijs
-exec --no-startup-id ulauncher --hide-window
+#exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id waybar
 exec --no-startup-id swaync
 exec --no-startup-id systemctl --user start sunshine
 exec --no-startup-id gammastep
 
-exec --no-startup-id swaymsg 'workspace $ws1; exec $term'
 exec --no-startup-id swaymsg 'workspace $ws10; exec discord'
 exec --no-startup-id swaymsg 'workspace $ws9; exec steam'
-#exec --no-startup-id swaymsg 'workspace $ws9; exec heroic'
-exec --no-startup-id swaymsg 'workspace $ws3; exec firefox'
+exec --no-startup-id swaymsg 'workspace $ws9; exec heroic'
+exec --no-startup-id swaymsg 'workspace $ws1; exec firefox'
 exec --no-startup-id swaymsg 'workspace $ws8; exec /home/mathijs/.local/share/spotify-launcher/install/usr/share/spotify/spotify'
 exec --no-startup-id swaymsg 'workspace $ws10; exec /home/mathijs/.local/bin/whatsapp-web'
 exec --no-startup-id swaymsg 'workspace $ws7; exec GTK_THEME=$evolutionTheme /usr/bin/evolution'
 
-exec --no-startup-id swaymsg 'workspace $ws1; move workspace to output $primary_monitor'
-exec --no-startup-id swaymsg 'workspace $ws3; move workspace to output $secondary_monitor'
+exec --no-startup-id swaymsg 'workspace $ws3; move workspace to output $primary_monitor'
+exec --no-startup-id swaymsg 'workspace $ws1; move workspace to output $secondary_monitor'
 
 input type:keyboard {
     xkb_layout "us"
@@ -78,7 +81,7 @@ input type:keyboard {
 focus_follows_mouse no
 floating_modifier $mod normal
 
-bindsym $mod+Shift+k exec --no-startup-id $term --class=$bigFloatingTerminal -e /home/mathijs/.cargo/bin/pik -F 
+bindsym $mod+Shift+k exec --no-startup-id $term --class=$bigFloatingTerminal -e /home/mathijs/.local/share/cargo/bin/pik -F 
 bindsym $mod+Shift+d exec --no-startup-id $term --class=$bigFloatingTerminal -e ssh -t ragnar /home/mathijs/.local/bin/lazydocker
 bindsym $mod+l exec --no-startup-id swaylock -f -c 000000
 bindsym $mod+Return exec $term
@@ -194,6 +197,7 @@ for_window [app_id="firefox"] inhibit_idle
 for_window [title="Volume Control"] floating enable
 for_window [class="1Password"] floating enable
 for_window [app_id="thunar"] floating enable
+for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [class="awakened-poe-trade"] floating enable, border none
 
 for_window [class="Joplin"] floating enable
@@ -201,6 +205,7 @@ for_window [class="Joplin"] floating enable
 for_window [title="^Picture-in-Picture$"] floating enable
 for_window [app_id="org.kde.kcalc"] floating enable
 
+for_window [title="nl.matttt.dirtyengine"] floating enable, resize set 1920 px 1080 px, border normal
 for_window [class="nl.matttt.dirtyengine"] floating enable, resize set 1920 px 1080 px, border normal
 for_window [app_id="nl.matttt.dirtyengine"] floating enable, resize set 1920 px 1080 px, border normal
 
@@ -221,7 +226,7 @@ for_window [app_id="blueman-manager"] floating enable, resize set 800px 600px
 
 assign [app_id="org.gnome.Evolution"] $ws7
 assign [class="Spotify"] $ws8
-assign [app_id="firefox"] $ws3
+assign [app_id="firefox"] $ws1
 assign [class="discord"] $ws10
 assign [class="steam"] $ws9
 assign [class="heroic"] $ws9
