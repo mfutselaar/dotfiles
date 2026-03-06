@@ -25,7 +25,7 @@ fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH:$GOPATH/bin"
+export PATH="$BUN_INSTALL/bin:$PATH:$GOPATH/bin:$HOME/.local/share/dotnet/.dotnet/tools:$HOME/Android/Sdk/platform-tools"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

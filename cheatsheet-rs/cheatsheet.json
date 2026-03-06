@@ -153,6 +153,10 @@
           "description": "git force push, branch is optional"
         },
         {
+          "input": "gst",
+          "description": "git stash including untracked files"
+        },
+        {
           "input": "---"
         },
         {

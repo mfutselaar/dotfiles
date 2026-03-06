@@ -12,14 +12,14 @@ set $biggerFloatingTerminal sway.ghostty.bigger_floating_terminal
 set $bigFloatingTerminal sway.ghostty.big_floating_terminal
 set $mediumFloatingTerminal sway.ghostty.medium_floating_terminal
 set $floatingTerminal sway.ghostty.floating_terminal
-set $evolutionTheme Skeuos-Grey-Dark:dark
 
 set $primary_monitor DP-1
 set $secondary_monitor DP-2
 #set $virtual_monitor HDMI-A-1
 
 output $primary_monitor resolution 3440x1440@144.00100Hz position 0,0
-output $secondary_monitor resolution 2550x1440 position 3440,0
+output $secondary_monitor resolution 2550x1440@143.972000Hz position 3440,0
+
 #output $virtual_monitor disable
 
 set $ws1 "1: "
@@ -62,14 +62,17 @@ exec --no-startup-id waybar
 exec --no-startup-id swaync
 exec --no-startup-id systemctl --user start sunshine
 exec --no-startup-id gammastep
+exec --no-startup-id /home/mathijs/Repository/StreamController/run.sh
+exec --no-startup-id /home/mathijs/Repository/notification-ms/tools/bin/notify-send-service
 
 exec --no-startup-id swaymsg 'workspace $ws10; exec discord'
 exec --no-startup-id swaymsg 'workspace $ws9; exec steam'
 exec --no-startup-id swaymsg 'workspace $ws9; exec heroic'
 exec --no-startup-id swaymsg 'workspace $ws1; exec firefox'
-exec --no-startup-id swaymsg 'workspace $ws8; exec /home/mathijs/.local/share/spotify-launcher/install/usr/share/spotify/spotify'
+#exec --no-startup-id swaymsg 'workspace $ws8; exec /home/mathijs/.local/share/spotify-launcher/install/usr/share/spotify/spotify'
+exec --no-startup-id swaymsg 'workspace $ws8; exec /usr/bin/spotify-launcher'
 exec --no-startup-id swaymsg 'workspace $ws10; exec /home/mathijs/.local/bin/whatsapp-web'
-exec --no-startup-id swaymsg 'workspace $ws7; exec GTK_THEME=$evolutionTheme /usr/bin/evolution'
+exec --no-startup-id swaymsg 'workspace $ws7; exec /usr/bin/thunderbird'
 
 exec --no-startup-id swaymsg 'workspace $ws3; move workspace to output $primary_monitor'
 exec --no-startup-id swaymsg 'workspace $ws1; move workspace to output $secondary_monitor'
@@ -86,7 +89,7 @@ bindsym $mod+Shift+d exec --no-startup-id $term --class=$bigFloatingTerminal -e 
 bindsym $mod+l exec --no-startup-id swaylock -f -c 000000
 bindsym $mod+Return exec $term
 bindsym $mod+Ctrl+Shift+Return exec $term --class=$biggerFloatingTerminal
-bindsym $mod+Shift+Return exec $term --class=$floatingTerminal
+bindsym $mod+Shift+Return exec $term --class=$mediumFloatingTerminal
 bindsym $mod+t exec --no-startup-id $term -e /home/mathijs/.local/bin/wm-tmux.sh 
 bindsym $mod+Shift+t exec --no-startup-id $term --class=$biggerFloatingTerminal -e /home/mathijs/.local/bin/wm-tmux.sh 
 bindsym $mod+q kill
@@ -105,6 +108,7 @@ bindsym $mod+s exec grim - | wl-copy
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 bindsym Print exec mkdir -p ~/Pictures/Screenshots && grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 bindsym Shift+Print exec mkdir -p ~/Pictures/Screenshots && grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+bindsym Alt+Print exec mkdir -p ~/Pictures/Screenshots && grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
 bindsym $mod+Shift+z resize set width 75 ppt
 bindsym $mod+Alt+Shift+r reload
@@ -196,6 +200,7 @@ for_window [app_id="firefox"] inhibit_idle
 
 for_window [title="Volume Control"] floating enable
 for_window [class="1Password"] floating enable
+for_window [class="Bitwarden"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [class="awakened-poe-trade"] floating enable, border none
@@ -218,18 +223,23 @@ for_window [app_id=$bigFloatingTerminal] floating enable, resize set 60 ppt 50 p
 for_window [app_id=$mediumFloatingTerminal] floating enable, resize set 50 ppt 50 ppt
 for_window [app_id=$floatingTerminal] floating enable
 
+for_window [app_id="org.gnome.TextEditor"] floating enable
+for_window [class="bruno"] floating enable
+
 for_window [class="steam"] floating enable, border none
 for_window [class="steam" title="^Steam$"] floating disable
 
 for_window [app_id="org.gnome.Evolution" title="^(?!.*- Evolution$).*"] floating enable
 for_window [app_id="blueman-manager"] floating enable, resize set 800px 600px
 
-assign [app_id="org.gnome.Evolution"] $ws7
-assign [class="Spotify"] $ws8
+for_window [app_id="org.mozilla.Thunderbird" title=".*Reminder.*"] floating enable
+
+assign [app_id="org.mozilla.Thunderbird"] $ws7
+assign [app_id="spotify"] $ws8
 assign [app_id="firefox"] $ws1
 assign [class="discord"] $ws10
 assign [class="steam"] $ws9
-assign [class="heroic"] $ws9
+assign [app_id="heroic"] $ws9
 assign [class="^jetbrains-"] $ws2
 assign [app_id="pcsx2-qt"] $ws9
 

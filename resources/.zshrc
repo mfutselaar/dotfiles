@@ -1,3 +1,4 @@
+fpath=("$HOME/.zsh/completions" $fpath)
 autoload -Uz compinit && compinit
 
 HISTFILE=~/.zsh_history
@@ -38,16 +39,12 @@ alias vim=/usr/bin/vi
 alias edit-aliases="vi ~/.config/aliases; source ~/.config/aliases"
 
 tmu() {
-  if [ -n "$1" ]; then
-    SESS="$1"
-    if [ "$SESS" = "." ]; then
-        SESS=$(basename "$PWD" | sed 's/[^a-zA-Z0-9]/_/g' | tr '[:upper:]' '[:lower:]')
-    fi
+  local name="${1:-}"
+  [[ "$name" == "." ]] && name=$(basename "$PWD")
+  name=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]/_/g')
+  [[ -z "$name" ]] && { tmux attach || tmux; return }
 
-    tmux attach-session -t "$SESS" || tmux new-session -s "$SESS"
-  else
-    tmux attach-session || tmux new-session
-  fi
+  tmux new-session -A -s "$name"
 }
 
 gac() {
@@ -56,16 +53,37 @@ gac() {
                 if [[ "$1" == "--amend" ]]; then
                         git commit --amend
                 else
-                        git commit -m "$@"
+                        git commit -m "$1"
                 fi
         else
                 git commit
         fi
 }
 
+gact() {
+        gac "$1"
+        git tag -a "$2" -m "$2"
+}
+
 gacp() {
-        gac $@
-        git push
+        gac "$1" "$2"
+        git push 
+}
+
+gactp() {
+        gact "$1" "$2"
+        git push origin "$2"
+}
+
+alias gst="git stash push -u"
+
+gtp() {
+        if [ -n "$1" ]; then
+                git tag -a "$1" -m "$1"
+                git push
+        else
+                echo "You must provide a tag: gtp v1.0"
+        fi
 }
 
 gpf() {

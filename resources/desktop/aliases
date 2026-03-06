@@ -32,6 +32,7 @@ if [[ "$OSTYPE" == "darwin" ]]; then
                 a) studio $(pwd) ;;
                 j) idea $(pwd) ;;
                 c) clion $(pwd) ;;
+                llm) opencode ;;
                 *) nvim $(pwd) ;;
             esac
        fi
@@ -44,11 +45,12 @@ else
 
         if [ -n "$2" ]; then
             case "$2" in
-                p) swaymsg exec ~/phpstorm/bin/phpstorm $(pwd) ;;
-                r) swaymsg exec ~/rider/bin/rider $(pwd) ;;
-                a) swaymsg exec ~/android-studio/bin/studio $(pwd) ;;
-                j) swaymsg exec ~/idea/bin/idea $(pwd) ;;
-                c) swaymsg exec ~/clion/bin/clion $(pwd) ;;
+                p) swaymsg exec ~/Applications/JetBrains/phpstorm/bin/phpstorm $(pwd) ;;
+                r) swaymsg exec ~/Applications/JetBrains/rider/bin/rider $(pwd) ;;
+                a) swaymsg exec ~/Applications/android-studio/bin/studio $(pwd) ;;
+                j) swaymsg exec ~/Applications/JetBrains/idea/bin/idea $(pwd) ;;
+                c) swaymsg exec ~/Applications/JetBrains/clion/bin/clion $(pwd) ;;
+                llm) opencode ;;
                 t) tmu . ;;
                 *) nvim $(pwd) ;;
             esac
@@ -73,7 +75,7 @@ else
 
     system-update() {
         sudo pacman -Syyu
-        yay
+        yay -Syyu
     }
 
     # xdg-ninja consolidated output
@@ -83,11 +85,6 @@ else
     export XDG_STATE_HOME=$HOME/.local/state
     export XDG_CACHE_HOME=$HOME/.cache
 
-    # ~/.android/
-    export ANDROID_USER_HOME=$XDG_DATA_HOME/android
-    alias adb='HOME="$XDG_DATA_HOME"/android adb'
-    # ~/Android/
-    export ANDROID_HOME=$XDG_DATA_HOME/android/sdk
     # ~/.cargo/
     export CARGO_HOME=$XDG_DATA_HOME/cargo
     # ~/.dosbox/
@@ -103,9 +100,17 @@ else
 fi
 
 _dev_autocomplete() {
-    local -a reply
-    reply=( $(find ~/Repository/ -type d -print | sed 's|^'$HOME'/Repository/||; s|^/||') )
-    _describe 'subdirectories' reply
+    local -a projects
+
+    # Level 1: all top-level directories (experiments + projects)
+    projects=( ~/Repository/*/(/N:t) )
+
+    # Level 2: only subdirectories that are git repositories
+    for dir in ~/Repository/*/*(/N); do
+        [[ -d "$dir/.git" ]] && projects+=( "${dir#$HOME/Repository/}" )
+    done
+
+    _describe 'projects' projects
 }
 
 compdef _dev_autocomplete dev
